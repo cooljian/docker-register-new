@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dock.dao.impl.UserDaoImpl">
+	<sql id="d_user">dock_user</sql>
+
+	<insert id="insert" parameterType="User">
+		<selectKey resultType="string" order="BEFORE" keyProperty="id">
+			SELECT REPLACE(UUID(), '-', '')
+		</selectKey>
+		INSERT INTO <include refid="d_user" /> (ID,
+		<trim suffixOverrides=",">
+			<if test="name != null">
+				name,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="version != null">
+				version,
+			</if>
+			<if test="lastAccess != null">
+				lastAccess,
+			</if>
+			<if test="createdBy != null">
+				createdBy,
+			</if>
+			<if test="createdTime != null">
+				createdTime,
+			</if>
+			<if test="updatedBy != null">
+				updatedBy,
+			</if>
+			<if test="updatedTime != null">
+				updatedTime,
+			</if>
+		</trim>
+		) VALUES (#{id},
+		<trim suffixOverrides=",">
+			<if test="name != null">
+				#{name},
+			</if>
+			<if test="address != null">
+				#{address},
+			</if>
+			<if test="version != null">
+				#{version},
+			</if>
+			<if test="lastAccess != null">
+				#{lastAccess},
+			</if>
+			<if test="createdBy != null">
+				#{createdBy},
+			</if>
+			<if test="createdTime != null">
+				#{createdTime},
+			</if>
+			<if test="updatedBy != null">
+				#{updatedBy},
+			</if>
+			<if test="updatedTime != null">
+				#{updatedTime},
+			</if>
+		</trim>
+		)
+	</insert>
+
+	<update id="update" parameterType="d_user">
+		UPDATE <include refid="d_user" />
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="name != null">
+				name = #{name},
+			</if>
+			<if test="address != null">
+				address = #{address},
+			</if>
+			<if test="version != null">
+				version = #{version},
+			</if>
+			<if test="lastAccess != null">
+				lastAccess = #{lastAccess},
+			</if>
+			<if test="createdBy != null">
+				createdBy = #{createdBy},
+			</if>
+			<if test="createdTime != null">
+				createdTime = #{createdTime},
+			</if>
+			<if test="updatedBy != null">
+				updatedBy = #{updatedBy},
+			</if>
+			<if test="updatedTime != null">
+				updatedTime = #{updatedTime},
+			</if>
+		</trim>
+		 WHERE id = #{id}
+	</update>
+
+	<update id="lock" parameterType="string">
+		UPDATE <include refid="d_user" />
+		   SET LOCKED = 1
+		 WHERE LOCKED = 0
+		   AND id = #{id}
+	</update>
+
+	<update id="unlock" parameterType="string">
+		UPDATE <include refid="d_user" />
+		   SET LOCKED = 0
+		 WHERE LOCKED = 1
+		   AND id = #{id}
+	</update>
+
+	<delete id="deleteById" parameterType="string">
+		DELETE FROM <include refid="d_user" />
+		 WHERE id = #{id}
+	</delete>
+
+	<select id="getById" parameterType="string" resultType="stadiumTicket">
+		SELECT * FROM <include refid="d_user" />
+		 WHERE id = #{id}
+	</select>
+
+	<select id="listBy" parameterType="map" resultType="stadiumTicket">
+		<include refid="listSQL" />
+	</select>
+
+	<select id="listPage" parameterType="map" resultType="stadiumTicket">
+		<include refid="listSQL" />
+		<if test="pageFirst != null">
+			LIMIT #{pageFirst}, #{pageSize}
+		</if>
+	</select>
+
+	<select id="listPageCount" parameterType="map" resultType="long">
+		SELECT COUNT(1) FROM <include refid="d_user" />
+		<where>
+			<include refid="condition_sql" />
+		</where>
+	</select>
+
+	<sql id="listSQL">
+		SELECT * FROM <include refid="d_user" />
+		<where>
+			<include refid="condition_sql" />
+		</where>
+		ORDER BY id DESC
+	</sql>
+   
+	<sql id="condition_sql">
+		<trim prefixOverrides="AND | OR">
+			<if test="id != null">
+				AND id = #{id}
+			</if>
+			<if test="name != null">
+				AND name = #{name}
+			</if>
+			<if test="address != null">
+				AND address = #{address}
+			</if>
+			<if test="version != null">
+				AND version = #{version}
+			</if>
+			<if test="lastAccess != null">
+				AND lastAccess = #{lastAccess}
+			</if>
+			<if test="createdBy != null">
+				AND createdBy = #{createdBy}
+			</if>
+			<if test="createdTime != null">
+				AND createdTime = #{createdTime}
+			</if>
+			<if test="updatedBy != null">
+				AND updatedBy = #{updatedBy}
+			</if>
+			<if test="updatedTime != null">
+				AND updatedTime = #{updatedTime}
+			</if>
+		</trim>
+	</sql>
+</mapper>

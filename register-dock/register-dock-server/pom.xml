@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.gj</groupId>
+		<artifactId>register-dock</artifactId>
+		<version>3.0.0</version>
+	</parent>
+
+	<artifactId>register-dock-server</artifactId>
+	<packaging>war</packaging>
+	<name>${project.artifactId}</name>
+
+	<properties>
+		<skip.maven.deploy>true</skip.maven.deploy>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.gj</groupId>
+			<artifactId>register-dock-api</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<configuration>
+					<httpConnector>
+						<port>8087</port>
+						<idleTimeout>6000</idleTimeout>
+					</httpConnector>
+					<stopKey>shutdown</stopKey>
+					<stopPort>9087</stopPort>
+					<stopWait>10</stopWait>
+					<reload>automatic</reload>
+					<dumpOnStart>true</dumpOnStart>
+					<scanIntervalSeconds>2</scanIntervalSeconds>
+					<jettyXml>${project.basedir}/src/test/resources/jetty-context.xml</jettyXml>
+					<webApp>
+						<contextPath>/</contextPath>
+						<allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>
+					</webApp>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
