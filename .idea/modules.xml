@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/dock-project.iml" filepath="$PROJECT_DIR$/dock-project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dock-web/dock-web.iml" filepath="$PROJECT_DIR$/dock-web/dock-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/register-core/register-core.iml" filepath="$PROJECT_DIR$/register-core/register-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/register-data-mybatis/register-data-mybatis.iml" filepath="$PROJECT_DIR$/register-data-mybatis/register-data-mybatis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/register-dock/register-dock.iml" filepath="$PROJECT_DIR$/register-dock/register-dock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/register-dock/register-dock-api/register-dock-api.iml" filepath="$PROJECT_DIR$/register-dock/register-dock-api/register-dock-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/register-dock/register-dock-provider/register-dock-provider.iml" filepath="$PROJECT_DIR$/register-dock/register-dock-provider/register-dock-provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/register-dock/register-dock-server/register-dock-server.iml" filepath="$PROJECT_DIR$/register-dock/register-dock-server/register-dock-server.iml" />
+    </modules>
+  </component>
+</project>

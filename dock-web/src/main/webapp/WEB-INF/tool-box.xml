@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolbox>
+	<tool>
+		<key>velocityTool</key>
+		<scope>application</scope>
+		<class>com.banksteel.rongzi.vipcos.utils.velocity.VelocityTool</class>
+	</tool>
+	
+	<tool>
+		<key>dateTool</key>
+		<scope>application</scope>
+		<class>com.banksteel.rongzi.vipcos.utils.velocity.DateTool</class>
+	</tool>
+	
+	<tool>
+		<key>moneyUtils</key>
+		<scope>application</scope>
+		<class>com.banksteel.rongzi.vipcos.utils.velocity.MoneyFormatTool</class>
+	</tool>
+	
+	<tool>
+		<key>moneyUtil</key>
+		<scope>application</scope>
+		<class>com.banksteel.rongzi.vipcos.utils.MoneyCalculateUtils</class>
+	</tool>
+	<data type="string">  
+        <scope>application</scope>  
+        <key>fileURN</key><value>http://192.168.200.15:8888/</value>  
+    </data>
+</toolbox>

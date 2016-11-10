@@ -1,0 +1,5 @@
+localhost 0:0:0:0:0:0:0:1 - - [2016-11-10 17:29:25] "GET //localhost:8085/hellorest/sss HTTP/1.1" 405 400  -
+localhost 0:0:0:0:0:0:0:1 - - [2016-11-10 17:30:05] "GET //localhost:8085/hello HTTP/1.1" 200 86  -
+localhost 0:0:0:0:0:0:0:1 - - [2016-11-10 17:30:14] "GET //localhost:8085/hellorest/xxx HTTP/1.1" 405 400  -
+localhost 0:0:0:0:0:0:0:1 - - [2016-11-10 17:30:22] "POST //localhost:8085/hellorest/sss HTTP/1.1" 200 2511  -
+localhost 0:0:0:0:0:0:0:1 - - [2016-11-10 17:30:32] "POST //localhost:8085/ser/hellorest/sss HTTP/1.1" 404 334  -

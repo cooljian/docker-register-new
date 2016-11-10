@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="dock-web:war">
+    <output-path>$PROJECT_DIR$/dock-web/target</output-path>
+    <root id="archive" name="dock-web-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="dock-web:war exploded" />
+    </root>
+  </artifact>
+</component>
