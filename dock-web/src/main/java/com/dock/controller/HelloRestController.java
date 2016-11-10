@@ -22,7 +22,7 @@ public class HelloRestController
     @Autowired
     private ConnectAndHandleDBService connectAndHandleDBService;
 
-    @RequestMapping(value = "/hellorest/{name}", method = RequestMethod.POST)
+    @RequestMapping(value = "/hellorest/{name}", method = RequestMethod.GET)
     public String helloRest(@PathVariable("name") String name) throws SQLException, IOException, ClassNotFoundException
     {
         List<Map<String, Object>> dataList = connectAndHandleDBService.handleData("select * from HEALTH_MONITOR_USER");
