@@ -1,6 +1,6 @@
 package com.dock.entity;
 
-import com.dock.core.AbstractEntity;
+import com.dock.core.entity.AbstractEntity;
 
 import java.io.Serializable;
 

@@ -1,7 +1,7 @@
 package com.dock.data.mybatis;
 
-import com.dock.core.AbstractEntity;
-import com.dock.page.Pagination;
+import com.dock.core.entity.AbstractEntity;
+import com.dock.core.page.Pagination;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 

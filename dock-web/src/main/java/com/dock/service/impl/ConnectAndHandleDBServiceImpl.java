@@ -1,7 +1,7 @@
 package com.dock.service.impl;
 
 import com.dock.service.ConnectAndHandleDBService;
-import com.dock.utils.StringUtils;
+import com.dock.core.utils.StringUtils;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 import org.slf4j.Logger;
