@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="878f47a1-e6ba-47c2-8d13-300c5a24c750" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dock-web/target/access-20161110.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dock-web/target/access-20161110.log.160905660" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dock-web/target/access-20161110.log.161121616" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dock-web/target/access-20161110.log.171403632" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dock-web/target/access-20161110.log.172739434" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dock-web/target/classes/META-INF/spring/dubbo-service.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dock-web/target/classes/META-INF/spring/mybatis/mybatis-config.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dock-web/target/classes/META-INF/spring/mybatis/spring-mybatis.xml" afterPath="" />
@@ -18,9 +13,6 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/dock-web/target/classes/com/dock/service/impl/ConnectAndHandleDBServiceImpl.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dock-web/target/classes/datasource.properties" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dock-web/target/classes/log4j.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dock-web/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dock-web/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dock-web/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dock-web/target/test-classes/jetty-context.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/register-core/target/classes/com/dock/core/AbstractEntity.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/register-core/target/classes/com/dock/core/ModelMap.class" afterPath="" />
@@ -31,13 +23,8 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/register-core/target/classes/com/dock/utils/StringUtils.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/register-core/target/classes/com/dock/utils/XmlUtils.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/register-core/target/classes/com/ecloud/page/PageParam.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/register-core/target/maven-archiver/pom.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/register-core/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/register-core/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/register-core/target/register-core-3.0.jar" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dock-web/src/main/webapp/WEB-INF/classes/com/dock/controller/HelloRestController.class" afterPath="$PROJECT_DIR$/dock-web/src/main/webapp/WEB-INF/classes/com/dock/controller/HelloRestController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dock-web/src/main/webapp/WEB-INF/lib/register-core-3.0.jar" afterPath="$PROJECT_DIR$/dock-web/src/main/webapp/WEB-INF/lib/register-core-3.0.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dock-web/src/main/java/com/dock/controller/HelloRestController.java" afterPath="$PROJECT_DIR$/dock-web/src/main/java/com/dock/controller/HelloRestController.java" />
     </list>
     <ignored path="dock-project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -86,11 +73,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mybatis-config.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mybatis-config.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dock-web/src/main/resources/META-INF/spring/mybatis/mybatis-config.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="46">
               <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JsonUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/register-core/src/main/java/com/dock/utils/JsonUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="92">
+              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModelMapUtils.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/register-core/src/main/java/com/dock/utils/ModelMapUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="115">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -318,6 +325,34 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dock-project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="register-core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dock-project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dock-web" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1194,12 +1229,12 @@
       <workItem from="1478585188995" duration="14266000" />
       <workItem from="1478748473654" duration="10259000" />
       <workItem from="1478766174873" duration="2353000" />
-      <workItem from="1478769172639" duration="2379000" />
+      <workItem from="1478769172639" duration="2971000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33841000" />
+    <option name="totallyTimeSpent" value="34433000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1928" y="-218" width="1936" height="1096" extended-state="6" />
@@ -1388,24 +1423,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/register-core/src/main/java/com/dock/utils/JsonUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/register-core/src/main/java/com/dock/utils/NumberUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="70" column="20" selection-start-line="70" selection-start-column="20" selection-end-line="70" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/register-core/src/main/java/com/dock/utils/ModelMapUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1666,6 +1687,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
           <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/register-core/src/main/java/com/dock/utils/JsonUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/register-core/src/main/java/com/dock/utils/ModelMapUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
           <folding />
         </state>
       </provider>
