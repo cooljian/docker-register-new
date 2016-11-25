@@ -1,0 +1,5 @@
+<script id="avatar-hdbars" type="text/x-handlebars-template">
+<div class="avatar"{{#fi this.title}} title="{{this.title}}"{{/fi}}>
+  <img src="{{#fi this.avatar}}{{this.avatar}}{{else}}/assets/img/avatars/avatar.png{{/fi}}">
+</div>
+</script>

@@ -1,0 +1,87 @@
+<#macro blank>
+	<#nested/>
+</#macro>
+
+<#macro body>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<#include "/inc/header.vm">
+
+	<script>var init = [];</script>
+</head>
+<body>
+<#nested/>
+
+<#include "/inc/footer.vm">
+<!-- other js -->
+${js_}
+</body>
+</html>
+</#macro>
+
+<#macro layout>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<#include "/inc/header.vm">
+
+	<script>var init = [];</script>
+</head>
+<body class="theme-clean main-menu-animated main-navbar-fixed">
+<div id="main-wrapper">
+	<#include "/inc/navbar.vm">
+	<#include "/inc/sidebar.vm">
+
+
+	<div id="content-wrapper">
+		${bread_crumbs}
+		<#nested/>
+	</div> <!-- / #content-wrapper -->
+	<div id="main-menu-bg"></div>
+</div> <!-- / #main-wrapper -->
+
+<#include "/inc/hdbars/menu.vm">
+<#include "/inc/footer.vm">
+<script type="text/javascript">
+init.push(function () {
+	$.loadmenu();
+});
+
+PixelAdmin.start(init);
+</script>
+<!-- other js -->
+${js_}
+</body>
+</html>
+</#macro>
+
+<#macro init breadCrumbs dataLink>
+	<#assign bread_crumbs>
+	<ul id="navbar_home" class="breadcrumb breadcrumb-page"><li><i class='fa fa-home'></i><a href="/index"> 首页</a></li>
+	<#assign size=breadCrumbs?size/>
+    <#assign index=0/>
+    <#list breadCrumbs as crumb>
+        <#assign index=index+1/>
+        <#if index lt size>
+            <li><a href='javascript:void(0);'>${crumb}</a></li>
+        <#else>
+            <li data-rel='${dataLink}'>${crumb}</li>
+            <#assign page_title=crumb + " OAuth 2.0 授权管理系统"/>
+        </#if>
+    </#list>
+    </ul>
+    </#assign>
+</#macro>
+
+<#macro css>
+    <#assign css_>
+    	<#nested/>
+    </#assign>
+</#macro>
+
+<#macro js>
+    <#assign js_>
+    	<#nested/>
+    </#assign>
+</#macro>

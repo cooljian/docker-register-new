@@ -1,0 +1,263 @@
+	<!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="navbar-container">
+                <!-- Navbar Barnd -->
+                <div class="navbar-header pull-left">
+                    <a href="#" class="navbar-brand">
+                        <small>
+                            <img src="/assets/img/logo.png" alt="OAuth 2.0 统一认证平台" />
+                        </small>
+                    </a>
+                </div>
+                <!-- /Navbar Barnd -->
+                <!-- Sidebar Collapse -->
+                <div class="sidebar-collapse" id="sidebar-collapse">
+                    <i class="collapse-icon fa fa-bars"></i>
+                </div>
+                <!-- /Sidebar Collapse -->
+                <!-- Account Area and Settings --->
+                <div class="navbar-header pull-right">
+                    <div class="navbar-account">
+                        <ul class="account-area">
+                            <li>
+                                <a class=" dropdown-toggle" data-toggle="dropdown" title="Help" href="#">
+                                    <i class="icon fa fa-warning"></i>
+                                </a>
+                                <!--Notification Dropdown-->
+                                <ul class="pull-right dropdown-menu dropdown-arrow dropdown-notifications">
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <div class="notification-icon">
+                                                    <i class="fa fa-check bg-darkorange white"></i>
+                                                </div>
+                                                <div class="notification-body">
+                                                    <span class="title">Uncharted break</span>
+                                                    <span class="description">03:30 pm - 05:15 pm</span>
+                                                </div>
+                                                <div class="notification-extra">
+                                                    <i class="fa fa-clock-o darkorange"></i>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <div class="notification-icon">
+                                                    <i class="fa fa-gift bg-warning white"></i>
+                                                </div>
+                                                <div class="notification-body">
+                                                    <span class="title">生日聚会</span>
+                                                    <span class="description">08:30 pm</span>
+                                                </div>
+                                                <div class="notification-extra">
+                                                    <i class="fa fa-calendar warning"></i>
+                                                    <i class="fa fa-clock-o warning"></i>
+                                                    <span class="description">望湘园</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <div class="notification-icon">
+                                                    <i class="fa fa-glass bg-success white"></i>
+                                                </div>
+                                                <div class="notification-body">
+                                                    <span class="title">同学会</span>
+                                                    <span class="description">10:30 pm</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="dropdown-footer ">
+                                        <span>今天, 11月28日</span>
+                                        <span class="pull-right">10°c <i class="wi wi-cloudy"></i></span>
+                                    </li>
+                                </ul>
+                                <!--/Notification Dropdown-->
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle" data-toggle="dropdown" title="Mails" href="#">
+                                    <i class="icon fa fa-envelope"></i>
+                                    <span class="badge">2</span>
+                                </a>
+                                <!--Messages Dropdown-->
+                                <ul class="pull-right dropdown-menu dropdown-arrow dropdown-messages">
+                                    <li>
+                                        <a href="#">
+                                            <img src="/assets/img/avatars/divyia.jpg" class="message-avatar" alt="Divyia Austin">
+                                            <div class="message">
+                                                <span class="message-sender">张小灵</span>
+                                                <span class="message-time">2分钟之前</span>
+                                                <span class="message-subject">【微信支付】API权限续期提醒</span>
+                                                <span class="message-body">你在微信支付商户平台的API证书将于2016年11月25日过期，请尽快前往商户平台进行续期操作，否则将影响相关API接口使用。</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="/assets/img/avatars/bing.png" class="message-avatar" alt="Microsoft Bing">
+                                            <div class="message">
+                                                <span class="message-sender">系统邮件</span>
+                                                <span class="message-time">昨天</span>
+                                                <span class="message-subject">Linux4.4内核不兼容性预警</span>
+                                                <span class="message-body">因UCloud云服务器底层平台暂不兼容Linux4.4 64位系统，烦请您暂勿将64位云服务器内核版本升至Linux4.4。以避免系统不兼容带来的服务异常。我们会尽快适配平台于Linux4.4。</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!--/Messages Dropdown-->
+                            </li>
+
+                            <li>
+                                <a class="dropdown-toggle" data-toggle="dropdown" title="Tasks" href="#">
+                                    <i class="icon fa fa-tasks"></i>
+                                    <span class="badge">3</span>
+                                </a>
+                                <!-- Tasks Dropdown -->
+                                <ul class="pull-right dropdown-menu dropdown-tasks dropdown-arrow ">
+                                    <li class="dropdown-header bordered-darkorange">
+                                        <i class="fa fa-tasks"></i>
+                                        4个任务正在处理中
+                                    </li>
+
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <span class="pull-left">账号审核</span>
+                                                <span class="pull-right">65%</span>
+                                            </div>
+
+                                            <div class="progress progress-xs">
+                                                <div style="width:65%" class="progress-bar"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <span class="pull-left">统计报表</span>
+                                                <span class="pull-right">35%</span>
+                                            </div>
+
+                                            <div class="progress progress-xs">
+                                                <div style="width:35%" class="progress-bar progress-bar-success"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <span class="pull-left">重启进度</span>
+                                                <span class="pull-right">75%</span>
+                                            </div>
+
+                                            <div class="progress progress-xs">
+                                                <div style="width:75%" class="progress-bar progress-bar-darkorange"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <li class="dropdown-footer">
+                                        <a href="#">
+                                            See All Tasks
+                                        </a>
+                                        <button class="btn btn-xs btn-default shiny darkorange icon-only pull-right"><i class="fa fa-check"></i></button>
+                                    </li>
+                                </ul>
+                                <!--/Tasks Dropdown-->
+                            </li>
+                            <li>
+                                <a class="wave in" id="chat-link" title="Chat" href="#">
+                                    <i class="icon glyphicon glyphicon-comment"></i>
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a class="login-area dropdown-toggle" data-toggle="dropdown">
+                                    <div class="avatar" title="会员中心">
+                                        <img src="/assets/img/avatars/avatar.png">
+                                    </div>
+                                    <section>
+                                        <h2><span class="profile"><span>Hi, Admin</span></span></h2>
+                                    </section>
+                                </a>
+                                <!--Login Area Dropdown-->
+                                <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
+                                    <li class="username"><a>尹 斌</a></li>
+                                    <li class="email"><a>yinbin@1yd.me</a></li>
+                                    <!--Avatar Area-->
+                                    <li>
+                                        <div class="avatar-area">
+                                            <img src="/assets/img/avatars/avatar.png" class="avatar">
+                                            <span class="caption">Change Photo</span>
+                                        </div>
+                                    </li>
+                                    <!--Avatar Area-->
+                                    <li class="edit">
+                                        <a href="profile.html" class="pull-left">会员中心</a>
+                                        <a href="#" class="pull-right">设置</a>
+                                    </li>
+                                    <!--Theme Selector Area-->
+                                    <li class="theme-area">
+                                        <ul class="colorpicker" id="skin-changer">
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#5DB2FF;" rel="/assets/css/skins/blue.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#2dc3e8;" rel="/assets/css/skins/azure.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#03B3B2;" rel="/assets/css/skins/teal.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#53a93f;" rel="/assets/css/skins/green.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#FF8F32;" rel="/assets/css/skins/orange.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#cc324b;" rel="/assets/css/skins/pink.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#AC193D;" rel="/assets/css/skins/darkred.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#8C0095;" rel="/assets/css/skins/purple.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#0072C6;" rel="/assets/css/skins/darkblue.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#585858;" rel="/assets/css/skins/gray.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#474544;" rel="/assets/css/skins/black.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#001940;" rel="/assets/css/skins/deepblue.min.css"></a></li>
+                                        </ul>
+                                    </li>
+                                    <!--/Theme Selector Area-->
+                                    <li class="dropdown-footer">
+                                        <a href="login.html">退出</a>
+                                    </li>
+                                </ul>
+                                <!--/Login Area Dropdown-->
+                            </li>
+                            <!-- /Account Area -->
+                            <!--Note: notice that setting div must start right after account area list. no space must be between these elements-->
+                            <!-- Settings -->
+                        </ul><div class="setting">
+                            <a id="btn-setting" title="Setting" href="#">
+                                <i class="icon glyphicon glyphicon-cog"></i>
+                            </a>
+                        </div><div class="setting-container">
+                            <label>
+                                <input type="checkbox" id="checkbox_fixednavbar">
+                                <span class="text">固定导航</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" id="checkbox_fixedsidebar">
+                                <span class="text">固定菜单</span>
+                            </label>
+                            <!-- <label>
+                                <input type="checkbox" id="checkbox_fixedbreadcrumbs">
+                                <span class="text">固定提示</span>
+                            </label> -->
+                            <label>
+                                <input type="checkbox" id="checkbox_fixedheader">
+                                <span class="text">固定头</span>
+                            </label>
+                        </div>
+                        <!-- Settings -->
+                    </div>
+                </div>
+                <!-- /Account Area and Settings -->
+            </div>
+        </div>
+    </div>
+    <!-- /Navbar -->

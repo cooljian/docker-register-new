@@ -1,0 +1,12 @@
+<@ui.init ["500"], "500"/>
+<@ui.layout>
+<div class="row">
+  <div class="col-lg-12 col-sm-12 col-xs-12">
+    <div class="alert alert-danger bd-radius mt25">
+      <h1>500</h1>
+      <h3>${msg}</h3>
+      <div>${msgTip}</div>
+    </div>
+  </div>
+</div>
+<@ui.layout>

@@ -1,0 +1,3 @@
+<script id="status-hdbars" type="text/x-handlebars-template">
+<a href="#" class="label {{#unless this.disabled}}label-success{{/unless}}">{{#fi this.disabled}}OFF{{else}}ON{{/fi}}</a>
+</script>

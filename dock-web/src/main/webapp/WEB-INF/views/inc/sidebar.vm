@@ -1,0 +1,10 @@
+<!-- 4. $MAIN_MENU -->
+<div id="main-menu" role="navigation">
+		<div id="main-menu-inner">
+			<ul id="sidebar-menu" class="navigation"></ul> <!-- / .navigation -->
+			<div class="menu-content">
+				<a href="/v3/manual" class="btn btn-primary btn-block btn-outline dark">操作手册</a>
+			</div>
+		</div> <!-- / #main-menu-inner -->
+	</div> <!-- / #main-menu -->
+<!-- /4. $MAIN_MENU -->

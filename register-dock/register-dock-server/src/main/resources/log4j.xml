@@ -7,13 +7,18 @@
 		</layout>
 	</appender>
 	<appender name="FILE" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="logs/register-dock-server.log" />
+		<param name="File" value="logs/tjcloud-uac-server.log" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d - %c -%-4r [%t] %-5p %x - %m%n" />
 		</layout>
 	</appender>
+	<logger name="com.dock" additivity="false">
+		<level value="DEBUG"/>
+		<appender-ref ref="CONSOLE"/>
+		<appender-ref ref="FILE"/>
+	</logger>
 	<root>
-		<level value="DEBUG" />
+		<level value="INFO" />
 		<appender-ref ref="CONSOLE" />
 		<appender-ref ref="FILE" />
 	</root>

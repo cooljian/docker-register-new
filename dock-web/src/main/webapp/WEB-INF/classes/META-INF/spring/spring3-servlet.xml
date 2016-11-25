@@ -7,16 +7,14 @@
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
     http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
-    <context:annotation-config/>
-    <context:component-scan base-package="com.dock"/>
+    <context:component-scan base-package="com.dock.controller"/>
 
     <!-- ViewResolver -->
-    <!--
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-        <property name="prefix" value="/WEB-INF/jsp/"/>
-    </bean>
-    -->
+    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+        <!--<property name="viewClass" value="org.sprin`gframework.web.servlet.view.JstlView"/>-->
+        <!--<property name="prefix" value="/WEB-INF/views"/>-->
+        <!--<property name="suffix" value=".vm"/>-->
+    <!--</bean>-->
 
     <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <property name="resourceLoaderPath" value="/WEB-INF/views/"/>
@@ -66,10 +64,10 @@
     </bean>
 
 
-    <!-- 对静态资源文件的访问 不支持访问WEB-INF目录 -->
+    <!-- 对静态资源文件的访问 js css等静态资源 不支持访问WEB-INF目录 -->
     <mvc:default-servlet-handler />
     <!-- 对静态资源文件的访问 支持访问WEB-INF目录 -->
-    <!-- <mvc:resources location="/uikit-2.3.1/" mapping="/uikit-2.3.1/**" /> -->
+     <mvc:resources  mapping="/assets/**" location="/, classpath:/WEB-INF/assets/"/>
 
     <!-- RESTful服务中很重要的一个特性即是同一资源,多种表述我们使用ContentNegotiatingViewResolver就可以做到。这个视图解析器允许你用同样的内容数据来呈现不同的view-->
     <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">

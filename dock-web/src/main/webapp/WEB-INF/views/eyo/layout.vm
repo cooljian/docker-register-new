@@ -1,0 +1,107 @@
+<#macro blank>
+	<#nested/>
+</#macro>
+
+<#macro body>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<#include "/inc/header.vm">
+</head>
+<body>
+<#nested/>
+
+<#include "/inc/footer.vm">
+<!-- other js -->
+${js_}
+</body>
+</html>
+</#macro>
+
+<#macro layout>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<#include "/inc/header.vm">
+</head>
+<body>
+<!-- Loading Container -->
+<!-- <div class="loading-container">
+    <div class="loader"></div>
+</div> -->
+<!--  /Loading Container -->
+<#include "/inc/navbar.vm">
+<!-- Main Container -->
+<div class="main-container container-fluid">
+    <!-- Page Container -->
+    <div class="page-container">
+        <#include "/inc/sidebar.vm">
+        <#include "/inc/chatbar.vm">
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Page Header -->
+            <div class="page-header position-relative">
+				${bread_crumbs}
+				<!--Header Buttons-->
+                <div class="header-buttons">
+                    <a class="sidebar-toggler" href="#"><i class="fa fa-arrows-h"></i></a>
+                    <a class="refresh" id="refresh-toggler" href=""><i class="glyphicon glyphicon-refresh"></i></a>
+                    <a class="fullscreen" id="fullscreen-toggler" href="#"><i class="glyphicon glyphicon-fullscreen"></i></a>
+                </div>
+                <!--Header Buttons End-->
+            </div>
+            <!-- /Page Header -->
+            <!-- Page Body -->
+            <div class="page-body">
+            	<#nested/>
+            </div>
+            <!-- /Page Body -->
+        </div>
+        <!-- /Page Content -->
+    </div>
+    <!-- /Page Container -->
+</div>
+<!-- Main Container -->
+
+<#include "/inc/hdbars/menu.vm">
+<#include "/inc/footer.vm">
+<script type="text/javascript">
+$(function(){
+	$.loadmenu();
+});
+</script>
+<!-- other js -->
+${js_}
+</body>
+</html>
+</#macro>
+
+<#macro init breadCrumbs dataLink>
+	<#assign bread_crumbs>
+	<div class='page-breadcrumbs'><ul class='breadcrumb'><li><i class='fa fa-home'></i><a href='/index'>首页</a></li>
+	<#assign size=breadCrumbs?size/>
+    <#assign index=0/>
+    <#list breadCrumbs as crumb>
+        <#assign index=index+1/>
+        <#if index lt size>
+            <li><a href='javascript:void(0);'>${crumb}</a></li>
+        <#else>
+            <li data-rel='${dataLink}'>${crumb}</li>
+            <#assign page_title=crumb + " OAuth 2.0 授权管理系统"/>
+        </#if>
+    </#list>
+    </ul></div>
+    </#assign>
+</#macro>
+
+<#macro css>
+    <#assign css_>
+    	<#nested/>
+    </#assign>
+</#macro>
+
+<#macro js>
+    <#assign js_>
+    	<#nested/>
+    </#assign>
+</#macro>

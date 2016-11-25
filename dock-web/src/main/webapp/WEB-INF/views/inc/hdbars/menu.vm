@@ -1,0 +1,18 @@
+<script id="menu-hdbars" type="text/x-handlebars-template">
+{{#each elements}}
+{{#fi this.children}}
+<li class="mm-dropdown">
+	<a href="#" class="mm-dropdown"><i class="menu-icon fa fa-{{this.icon}}"></i><span class="mm-text">{{this.name}}</span></a>
+	<ul class="submenu">
+		{{#each this.additionalParameters.children}}
+		<li data-link="{{this.code}}"><a href="{{this.href}}"><span class="mm-text">{{this.name}}</span></a></li>
+		{{/each}}
+	</ul>
+</li>
+{{else}}
+<li data-link="{{this.code}}">
+	<a href="{{this.href}}"><i class="menu-icon fa fa-{{this.icon}}"></i><span class="mm-text">{{this.name}}</span></a>
+</li>
+{{/fi}}
+{{/each}}
+</script>

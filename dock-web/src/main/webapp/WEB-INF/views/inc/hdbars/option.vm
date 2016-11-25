@@ -1,0 +1,5 @@
+<script id="option-hdbars" type="text/x-handlebars-template">
+{{#each elements}}
+<option value="{{this.value}}">{{this.name}}</option>
+{{/each}}
+</script> 

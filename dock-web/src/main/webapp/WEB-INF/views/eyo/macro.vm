@@ -1,0 +1,108 @@
+#macro(init $breadCrumbs $dataLink)
+    ###if($headerTitle != "")
+    ##    #set($page_header="<div class='header-title'><h1")
+    ##    #if($dataLink != "")
+    ##    	#set($page_header = $page_header + " data-rel='" + $dataLink + "'")
+    ##    #end
+    ##    #set($page_header = $page_header + ">" + $headerTitle + " <small><i class='fa fa-angle-right'></i></small></h1></div>")
+    ###end
+
+    #set($bread_crumbs="<div class='page-breadcrumbs'><ul id='navbar_home' class='breadcrumb'><li><i class='fa fa-home'></i><a href='javascript:void(0);'>首页</a></li>")
+
+	#set($size = $breadCrumbs.size())
+    #set($index = 0)
+    #foreach($crumb in $breadCrumbs)
+        #set($index = $index + 1)
+        #if($index < $size)
+            #set($bread_crumbs="$bread_crumbs<li><a href='javascript:void(0);'>$crumb</a></li>")
+        #else
+            #set($bread_crumbs="$bread_crumbs<li data-rel='" + $dataLink + "'>$crumb</li>")
+            #set($page_title=$crumb + " OAuth 2.0 授权管理系统")
+        #end
+    #end
+
+    #set($bread_crumbs="$bread_crumbs</ul></div>")
+#end
+
+#macro(pageNation $data $colspan $url)
+ <div class="row DTTTFooter">
+	<div class="col-sm-6">
+   		<div class="dataTables_info" id="simpledatatable_info" role="alert" aria-live="polite" aria-relevant="all">第 ${data.pageNo} 页/共 ${data.pageCount} 页, 每页 ${data.pageSize} 条/共 ${data.totalCount} 条</div>
+   	</div>
+	
+   	<div class="col-sm-6">
+   		<div class="dataTables_paginate paging_bootstrap" id="simpledatatable_paginate">
+   			<ul class="pagination">
+   				#if(${data.pageNo}>1)
+   				<li class="prev">
+   					<a href="${url}pageNo=1">首页</a>
+   				</li>
+   				#end
+   				#set($prevPage = ${data.pageNo} - 1)
+   				#set($nextnPage = ${data.pageNo} + 1)
+   				#if(${data.pageNo} == 1)
+   					#set($prevPage = 1)
+   				#end
+   				#if(${data.pageNo} == ${data.pageCount})
+   					#set($nextnPage = ${data.pageCount})
+   				#end
+   				<li #if(${data.pageNo}==1) class="prev disabled" #else class="prev"#end>
+   					<a #if(${data.pageNo}==1) href="javascript:void(0);" #else href="${url}pageNo=$prevPage" #end>上一页</a>
+   				</li>
+   				#set($offsetStart=1)
+   				#set($offsetEnd=${data.pageCount})
+   				#if($offsetEnd > 5)
+   					#if($offsetEnd - ${data.pageNo} >= 2)
+   						#set($offsetEnd = ${data.pageNo} + 2)
+   					#end
+   					#set($offsetStart = $offsetEnd - 4)
+   					#if($offsetStart < 1)
+   						#set($offsetStart = 1)
+   						#set($offsetEnd = 5)
+   					#end
+   				#end
+   				
+   				#foreach($foo in [$!offsetStart..$offsetEnd])
+    				#if($foo!=0)
+                    <li #if($foo==${data.pageNo})class="active" #end>
+    					<a #if($foo==${data.pageNo}) href="javascript:void(0);" #else href="${url}pageNo=$foo" #end>$foo</a>
+    				</li>
+    				#end
+                   #end
+   				<li #if(${data.pageNo}==${data.pageCount} || ${data.pageCount}==0) class="next disabled" #else class="next"#end>
+   					<a #if(${data.pageNo}==${data.pageCount} || ${data.pageCount}==0) href="javascript:void(0);" #else href="${url}pageNo=$nextnPage" #end>下一页</a>
+   				</li>
+   				#if(${data.pageNo}<${data.pageCount})
+   				<li class="next">
+   					<a href="${url}pageNo=${data.pageCount}">尾页</a>
+   				</li>
+   				#end
+   			</ul>
+   		</div>
+   	</div>
+</div>
+#end
+
+#macro(showEmpty $data $colspan)
+#if(!$data.recordList || $data.recordList.size() == 0)
+<tr>
+    <td colspan="${colspan}">
+        <div class="padding-10" align="center">
+            <font style="color: #999">没有可以用来显示的数据</font>
+        </div>
+    </td>
+</tr>
+#end
+#end
+
+#macro(showEmptyList $list $colspan)
+#if(!$list || $list.size() == 0)
+<tr>
+    <td colspan="${colspan}">
+        <div class="padding-10" align="center">
+            <font style="color: #999">没有可以用来显示的数据</font>
+        </div>
+    </td>
+</tr>
+#end
+#end

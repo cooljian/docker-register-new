@@ -3,7 +3,6 @@ package com.dock.core.utils;//
 // (powered by Fernflower decompiler)
 //
 
-import com.dock.core.utils.NumberUtils;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

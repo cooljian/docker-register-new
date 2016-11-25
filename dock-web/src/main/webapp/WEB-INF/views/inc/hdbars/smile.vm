@@ -1,0 +1,3 @@
+<script id="smile-hdbars" type="text/x-handlebars-template">
+<i class="fa fa-{{#fi this.disabled}}frown-o orange{{else}}smile-o blue{{/fi}} ft-16x"></i>
+</script>

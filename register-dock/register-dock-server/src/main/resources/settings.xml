@@ -1,0 +1,73 @@
+<settings>
+	<localRepository>/Users/oudoud/.m2/repository</localRepository>
+
+	<pluginGroups></pluginGroups>
+
+	<servers>
+		<server>
+			<id>tjcloud-releases</id>
+			<username>developer</username>
+			<password>dDdiVFpSy207QEZ1xei3vS</password>
+		</server>
+		<server>
+			<id>tjcloud-snapshots</id>
+			<username>developer</username>
+			<password>dDdiVFpSy207QEZ1xei3vS</password>
+		</server>
+		<server>
+			<id>tjcloud</id>
+			<username>developer</username>
+			<password>dDdiVFpSy207QEZ1xei3vS</password>
+		</server>
+	</servers>
+
+	<mirrors>
+		<mirror>
+			<id>tjcloud</id>
+			<mirrorOf>*</mirrorOf>
+			<url>http://139.196.180.44/nexus/content/groups/public</url>
+		</mirror>
+	</mirrors>
+
+	<profiles>
+		<profile>
+			<id>tjcloud</id>
+			<repositories>
+				<repository>
+					<id>central</id>
+					<url>http://139.196.180.44/nexus/content/groups/public</url>
+					<releases>
+						<enabled>true</enabled>
+						<updatePolicy>always</updatePolicy>
+						<checksumPolicy>warn</checksumPolicy>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+						<updatePolicy>never</updatePolicy>
+						<checksumPolicy>fail</checksumPolicy>
+					</snapshots>
+				</repository>
+			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>central</id>
+					<url>http://139.196.180.44/nexus/content/groups/public</url>
+					<releases>
+						<enabled>true</enabled>
+						<updatePolicy>always</updatePolicy>
+						<checksumPolicy>warn</checksumPolicy>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+						<updatePolicy>never</updatePolicy>
+						<checksumPolicy>fail</checksumPolicy>
+					</snapshots>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+	</profiles>
+	<activeProfiles>
+		<activeProfile>tjcloud</activeProfile>
+	</activeProfiles>
+
+</settings>

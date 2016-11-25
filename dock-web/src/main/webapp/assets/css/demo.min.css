@@ -1,0 +1,212 @@
+﻿.fontawesome-icon-list{margin:22px 0 0 0 !important}.fontawesome-icon-list .fa-hover{color:#262626;display:block;height:36px;line-height:32px;padding-left:10px;padding:2px 0}.fontawesome-icon-list .fa-hover .fa{display:inline-block;font-size:14px;margin-right:10px;text-align:right;width:32px}.fontawesome-icon-list .fa-hover:hover{background-color:#eee;color:#000;text-decoration:none}.fontawesome-icon-list .fa-hover:hover .fa{font-size:28px;vertical-align:-6px}.bs-glyphicons{overflow:hidden}.bs-glyphicons li{float:left;width:25%;height:115px;padding:10px;font-size:10px;line-height:1.4;text-align:center;border:1px solid #fff;background-color:#f9f9f9}.bs-glyphicons li:hover{color:#fff;background-color:#e46f61}.bs-glyphicons .glyphicon{margin-top:5px;margin-bottom:10px;font-size:24px}.bs-glyphicons .glyphicon-class{display:block;text-align:center;word-wrap:break-word}.bs-glyphicons-list{padding-left:0;list-style:none}@media(min-width:768px){.bs-glyphicons{margin-left:0;margin-right:0}.bs-glyphicons li{width:12.5%;font-size:12px}}.weathericons{padding:5px 10px;border-radius:4px}.weathericons:hover{background-color:#a0d468;color:#fff}.weathericons .icon,.weathericons .class{display:inline-block}.weathericons .icon{margin-right:5px;font-size:24px}#typicon-preview{margin:0 auto;position:relative;text-align:center}#typicon-preview .icon{float:left;padding:6px;display:inline-block;cursor:pointer;width:48px;height:48px;text-align:center;vertical-align:middle;-webkit-border-radius:6px;-webkit-background-clip:padding-box;-moz-border-radius:6px;-moz-background-clip:padding;border-radius:6px;background-clip:padding-box;color:#444}#typicon-preview .icon .typcn:before{font-size:24px}#typicon-preview .icon:hover{background-color:#ffce55;line-height:38px;color:#fff}#typicon-preview .icon:hover .typcn:before{font-size:32px}.chartcontainer{width:100%;text-align:center}.easy-pie-chart-preview .well{width:100%;height:250px;text-align:center;position:relative;padding-top:50px}.easy-pie-chart-preview .well .easyPieChart{margin:0 auto}.sparkline-preview .well{text-align:center;position:relative}.buttons-preview .btn,.buttons-preview .btn-group{margin-bottom:10px;margin-right:10px}.dropdown-container{margin:0 auto;text-align:center}.dropdown-container .dropdown-preview{display:inline-block;text-align:left}.dropdown-container .dropdown-preview>.dropdown-menu{display:block;position:static;margin-bottom:5px}#dropdownbuttons .btn{margin-top:10px}.labels-container .label{margin:0 10px 10px 0}.popover-container{overflow:auto}.popoverexample .popover{position:relative;display:block;width:260px;margin:20px}.modal-preview .modal{position:relative;top:auto;right:auto;left:auto;bottom:auto;z-index:1;display:block;width:auto;overflow:hidden;max-width:600px}.modal-preview .modal .modal-dialog{width:90%}.bordered-well-container .well{margin-bottom:0}.knob-container{text-align:center}#red,#green,#blue{margin:10px;display:inline-block;height:200px}#colorpicker{height:240px;width:100%;margin:20px auto;padding:10px;border:1px solid #bfbfbf}#colorpicker .result{margin:60px 30px;height:100px;width:100px;display:inline-block;vertical-align:top;color:#7f7f7f;background:#7f7f7f;border:1px solid #fff;box-shadow:0 0 10px}#colors .colored-slider{margin-bottom:20px}#sizes .sized-slider{margin-bottom:20px}.grid-example .row{margin-bottom:15px;padding:0 15px}.grid-example .row [class^=col-]{padding-top:10px;padding-bottom:10px;background-color:#f5f5f5;border:1px solid #ddd}
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.page-body {
+    padding: 10px 0px;
+}
+.widget {
+    margin: 3px 0 15px 0;
+}
+.mw88 {
+	min-width: 88px;
+}
+.mw120 {
+	min-width: 120px;
+}
+.mt10 {
+	margin-top: 10px;
+}
+.mt20 {
+	margin-top: 20px !important;
+}
+.mr20 {
+	margin-right: 20px;
+}
+.bd-radius {
+	border-radius: 3px 3px 0 0;
+}
+.pl5 {
+	padding-left: 5px;
+}
+.pr5 {
+	padding-right: 5px;
+}
+.pb10 {
+	padding-bottom: 10px !important;
+}
+.pr10 {
+	padding-right: 10px;
+}
+.pl10 {
+	padding-left: 10px;
+}
+.pt20 {
+	padding-top: 20px !important;
+}
+.no-padding-left {
+	padding-left: 0;
+}
+.no-padding-right {
+	padding-right: 0;
+}
+.page-header {
+	height: 40px !important;
+	padding-left: 0px;
+	background: #f3f3f3 !important;
+}
+.page-header .breadcrumb {
+	min-height: 40px;
+	line-height: 39px;
+	margin: 0 0 0 8px;
+}
+.page-header .breadcrumb>li>i {
+	font-size: 16px;
+}
+.page-header.page-header-fixed {
+    top: 45px !important;
+    margin-top: 0 !important;
+}
+.page-header.page-header-fixed + .page-body {
+	margin-top: 40px;
+}
+.page-chatbar .chatbar-contacts .contacts-list .contact .contact-avatar img {
+	border-radius: 50%;
+}
+.breadcrumb>li>a:hover {
+	text-decoration: none;
+}
+.userole-header {
+	margin-bottom: -1px !important;
+	height: 43px !important;
+	line-height: 42px !important;
+}
+.userole-header .widget-caption {
+	line-height: 42px !important;
+}
+.userole-header .dropdown-menu {
+	min-width: 80px !important;
+    left: 0 !important;
+}
+.useropera-header {
+	margin-bottom: -1px !important;
+}
+.message-avatar {
+	border-radius: 50%;
+}
+.opera-checkbox {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+.opera-checkbox input[type=checkbox] {
+	height: 16px !important;
+	width: 16px !important;
+	min-height: 16px !important;
+}
+.ft12 {
+	font-size: 12px !important;
+}
+.avatar {
+	border-left: 0 !important;
+}
+.table>tbody>tr>td .avatar img {
+    width: 24px;
+    height: 24px;
+}
+.highlight {
+	background-color: #e3e3e3 !important;
+}
+.form-group {
+    margin-bottom: 0 !important;
+}
+.no-shadow {
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	box-shadow: none !important;
+}
+.widget-buttons {
+    height: 34px !important;
+}
+.input-login {
+  height: 41px;
+  padding: 5px 15px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.input-icon > input.input-login + [class*="fa-"],
+.input-icon > input.input-login + [class*="glyphicon-"] {
+  width: 41px;
+  font-size: 16px;
+  padding-top: 5px;
+  line-height: 34px;
+}
+.login-container .loginbox {
+	width: 390px !important;
+	padding: 10px 0 !important;
+}
+.login-container .loginbox .loginbox-or {
+    margin-top: 10px;
+}
+.login-container .loginbox .loginbox-title {
+	margin: 10px 0 15px !important;
+}
+.login-container .loginbox .loginbox-textbox {
+  padding: 10px 40px 0 40px;
+}
+.loginbox .signin-btn {
+  border: none;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 19px;
+  outline: 0 !important;
+  padding: 10px 0;
+  text-align: center;
+  width: 120px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.loginbox .signin-btn:hover {
+  background: #444 !important;
+}
+.loginbox a.forgot-password {
+  border-bottom: 1px dashed #bbb;
+  color: #999;
+  display: inline-block;
+  font-size: 11px;
+  margin-left: 10px;
+  padding-bottom: 1px;
+}
+.loginbox a.forgot-password:hover {
+  color: #555555;
+  text-decoration: none;
+}
+.login-container .loginbox .loginbox-social .social-buttons .button-facebook {
+	margin-left: 30px;
+	margin-right: 50px;
+}
+.login-container .loginbox .loginbox-social .social-buttons .button-twitter {
+	margin-right: 50px;
+}
+.login-container .loginbox .loginbox-social .social-buttons .button-google {
+	width: 50px !important;
+	height: 50px !important;
+	margin-left: 0 !important;
+}
+.register-container .registerbox {
+    padding: 0 !important;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+	vertical-align: middle !important;
+}
+.navbar .navbar-inner .navbar-header .navbar-account.setting-open .setting {
+    right: 285px !important;
+}
+.navbar .navbar-inner .navbar-header .navbar-account .setting-container {
+	width: 285px;
+}

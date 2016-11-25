@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dock.dao.impl.UserDaoImpl">
+	<sql id="t_user">uac_user</sql>
+	<insert id="insert" parameterType="user">
+		<selectKey resultType="string" order="BEFORE" keyProperty="id">
+			SELECT REPLACE(UUID(), '-', '') AS ID FROM DUAL
+		</selectKey>
+		INSERT INTO <include refid="t_user" /> (ID,
+		<trim suffixOverrides=",">
+			<if test="authId != null">
+				authId,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="idCard != null">
+				idCard,
+			</if>
+			<if test="avatar != null">
+				avatar,
+			</if>
+			<if test="channel != null">
+				channel,
+			</if>
+			<if test="gender != null">
+				gender,
+			</if>
+			<if test="birthday != null">
+				birthday,
+			</if>
+			<include refid="com.dock.data.mybatis.mapper.inscolumn"/>
+		</trim>
+		) VALUES (#{id},
+		<trim suffixOverrides=",">
+			<if test="authId != null">
+				#{authId},
+			</if>
+			<if test="name != null">
+				#{name},
+			</if>
+			<if test="idCard != null">
+				#{idCard},
+			</if>
+			<if test="avatar != null">
+				#{avatar},
+			</if>
+			<if test="channel != null">
+				#{channel},
+			</if>
+			<if test="gender != null">
+				#{gender},
+			</if>
+			<if test="birthday != null">
+				#{birthday},
+			</if>
+			<include refid="com.dock.data.mybatis.mapper.insparam"/>
+		</trim>
+		)
+	</insert>
+
+	<update id="update" parameterType="user">
+		UPDATE <include refid="t_user" />
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="authId != null">
+				authId = #{authId},
+			</if>
+			<if test="name != null">
+				name = #{name},
+			</if>
+			<if test="idCard != null">
+				idCard = #{idCard},
+			</if>
+			<if test="avatar != null">
+				avatar = #{avatar},
+			</if>
+			<if test="channel != null">
+				channel = #{channel},
+			</if>
+			<if test="gender != null">
+				gender = #{gender},
+			</if>
+			<if test="birthday != null">
+				birthday = #{birthday},
+			</if>
+			<include refid="com.dock.data.mybatis.mapper.update"/>
+		</trim>
+		WHERE id = #{id}
+	</update>
+
+	<update id="lock" parameterType="string">
+		UPDATE <include refid="t_user" />
+		SET LOCKED = 1
+		WHERE LOCKED = 0
+		AND id = #{id}
+	</update>
+
+	<update id="unlock" parameterType="string">
+		UPDATE <include refid="t_user" />
+		SET LOCKED = 0
+		WHERE LOCKED = 1
+		AND id = #{id}
+	</update>
+
+	<delete id="deleteById" parameterType="string">
+		DELETE FROM <include refid="t_user" />
+		WHERE id = #{id}
+	</delete>
+
+	<select id="getById" parameterType="string" resultType="user">
+		SELECT * FROM <include refid="t_user" />
+		WHERE id = #{id}
+	</select>
+
+	<select id="listBy" parameterType="map" resultType="user">
+		<include refid="listSQL" />
+	</select>
+
+	<select id="listPage" parameterType="map" resultType="user">
+		<include refid="listSQL" />
+		<if test="pageFirst != null">
+			LIMIT #{pageFirst}, #{pageSize}
+		</if>
+	</select>
+
+	<select id="listPageCount" parameterType="map" resultType="long">
+		SELECT COUNT(1) FROM <include refid="t_user" />
+		<where>
+			<include refid="condition_sql" />
+		</where>
+	</select>
+
+	<sql id="listSQL">
+		SELECT * FROM <include refid="t_user" />
+		<where>
+			<include refid="condition_sql" />
+		</where>
+		ORDER BY id DESC
+	</sql>
+
+	<sql id="condition_sql">
+		<trim prefixOverrides="AND | OR">
+			<if test="id != null">
+				AND id = #{id}
+			</if>
+			<if test="authId != null">
+				AND authId = #{authId}
+			</if>
+			<if test="name != null">
+				AND name like CONCAT('%',#{name},'%' )
+			</if>
+			<if test="idCard != null">
+				AND idCard = #{idCard}
+			</if>
+			<if test="avatar != null">
+				AND avatar = #{avatar}
+			</if>
+			<if test="channel != null">
+				AND channel = #{channel}
+			</if>
+			<if test="gender != null">
+				AND gender = #{gender}
+			</if>
+			<if test="birthday != null">
+				AND birthday = #{birthday}
+			</if>
+			<include refid="com.dock.mapper.mybatis.mapper.condition"/>
+		</trim>
+	</sql>
+</mapper>

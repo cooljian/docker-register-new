@@ -18,6 +18,6 @@
 
 	<dubbo:protocol name="dubbo" serialization="kryo" />
 
-	<dubbo:service interface="com.dock.service.UserService" ref="userService" protocol="dubbo" version="3.0.0" />
+	<dubbo:service interface="UserService" ref="userService" protocol="dubbo" version="3.0.0" />
 
 </beans>

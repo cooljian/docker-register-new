@@ -1,0 +1,115 @@
+<@ui.init ["系统管理", "菜单管理"], "menus_list"/>
+
+<@ui.layout>
+<div class="row">
+  <div class="col-lg-12 col-sm-12 col-xs-12">
+    <div class="panel search">
+      <div class="panel-body bordered-left">
+        <form method="post" role="form" action="/customer/list.htm">
+           <div class="row">
+			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-horizontal">
+              <div class="form-group margin-bottom-10">
+                <label for="fullname" class="col-md-3 control-label no-padding-right text-nowrap">菜单名称：</label>
+                <div class="col-md-9">
+                    <input type="text" value ="${map.fullname}" name="fullname" class="form-control" placeholder="请输入姓名" onblur="filterTrim(this);"/>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-horizontal">
+              <div class="text-align-left">
+                  <button type="submit" class="btn btn-info" name="submit"><i class="fa fa-search"></i> 查询</button>
+                  <button type="button" class="btn btn-default" name="reset"><i class="fa fa-undo"></i> 重置</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+    
+    <div class="panel">
+      <div class="panel-body">
+	    <div class="row">
+		  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="buttons-preview">
+				<a id="add-user" class="btn btn-danger" href="#"><i class="fa fa-plus"></i> 新增 </a>
+			</div>
+		  </div>
+	    </div>
+	    
+	    <div class="row">
+	      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+               <table width="100%" class="table table-striped table-bordered table-hover" id="menulist">
+                 <thead>
+                   <tr>
+                     <th> 类型 </th>
+                     <th> 图标 </th>
+                     <th> 编码 </th>
+                     <th> 名称 </th>
+                     <th> 链接 </th>
+                     <th> 序号 </th>
+                     <th> 状态 </th>
+                     <th> 操作 </th>
+                   </tr>
+                 </thead>
+               </table>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-horizontal">
+            <div class="panel">
+              <div class="panel-body p20">
+                <div id="scroll-menu">
+                  <div id="menuTree" class="tree">
+                    <div class="tree-folder" style="display: none;">
+                        <div class="tree-folder-header">
+                            <i class="fa fa-folder"></i><div class="tree-folder-name"></div>
+                        </div>
+                        <div class="tree-folder-content"></div>
+                        <div class="tree-loader" style="display: none;"></div>
+                    </div>
+                    <div class="tree-item" style="display: none;">
+                        <i class="tree-dot"></i><div class="tree-item-name"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<@ui.js>
+<#include "/inc/hdbars/button.vm">
+<script src="/assets/js/fuelux/treeview/treeview-custom.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	$("#scroll-menu").slimScroll({height: 427, alwaysVisible: true});
+	$('#menulist').pagination({
+		info: true,
+		paginate: true,
+		url: '/v3/menus/search',
+		columns: [
+		    { "data": "type" },
+		    { "data": "icon" },
+		    { "data": "code" },
+		    { "data": "name" },
+		    { "data": "href" },
+		    { "data": "orderNo" },
+		    { "data": "disabled" },
+		    { "data": null, "sClass": "text-center"}
+		],
+		last: true
+	});
+	$('#menuTree').DSTree({
+		url: '/v3/menus/tree'
+	});
+});
+</script>
+</@ui.js>
+</@ui.layout>

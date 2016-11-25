@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by gaojian on 2016/4/21.
  */
-@Controller
+@Controller("helloWorldController")
 public class HelloWorldController
 {
     @RequestMapping(value = "/hello")
     public ModelAndView helloJava(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
     {
-        return new ModelAndView("/hello", "message", "how clever you are");
+        return new ModelAndView("/hello", "message", "xxxxxxxxxxxxsoso");
     }
 }

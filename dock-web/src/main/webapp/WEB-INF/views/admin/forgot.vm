@@ -1,0 +1,35 @@
+<@ui.body>
+<div class="register-container animated fadeInDown">
+    <div class="registerbox bg-white">
+        <div class="widget-header bordered-bottom bordered-blue">
+            <span class="widget-caption">找回密码</span>
+        </div>
+        <div class="form-group registerbox-textbox">
+            <span class="input-icon">
+                <input type="text" class="form-control" placeholder="用户名">
+                <i class="fa fa-user"></i>
+            </span>
+        </div>
+        <div class="form-group registerbox-textbox">
+            <span class="input-icon">
+                <input type="text" class="form-control" placeholder="手机号码">
+                <i class="fa fa-mobile"></i>
+            </span>
+        </div>
+        <div class="input-group registerbox-textbox">
+            <input type="text" class="form-control" placeholder="验证码">
+            <span class="input-group-btn">
+                <button class="btn btn-darkorange bg-blue" type="button">点击发送验证码</button>
+            </span>
+        </div>
+        <div class="registerbox-submit">
+            <input type="button" class="btn btn-azure pull-right" value=" 取消 ">
+            <input type="button" class="btn btn-primary pull-right mr20" value=" 确 定 ">
+        </div>
+    </div>
+    <div class="logobox">
+        <span>知道密码 ?</span>
+        <a href="/login">去登录</a>
+    </div>
+</div>
+</@ui.body>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	#parse("/inc/header.vm")
+</head>
+<body>
+$screen_content
+
+#parse("/inc/footer.vm")
+<!-- other js -->
+#if($js)$js#end
+</body>
+</html>

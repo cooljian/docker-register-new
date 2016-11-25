@@ -1,0 +1,136 @@
+<@ui.init ["泳馆管理", "服务类型管理", "新增服务类型"], "swim_service_type"/>
+
+<@ui.layout>
+<div class="row mt25">
+  <div class="col-lg-6 col-sm-12 col-xs-12">
+    <div class="panel">
+      <div class="panel-heading">
+      	<span class="panel-title">新增产品</span>
+      </div>
+      <div class="panel-body">
+      	<form class="form-horizontal" id="jq-validation-form" novalidate="novalidate">
+      		<div class="form-group">
+      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">产品名称</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<input type="text" class="form-control" id="product_name" name="name" placeholder="产品名称">
+      			</div>
+      		</div>
+      
+      		<div class="form-group">
+      			<label for="jq-validation-password" class="col-sm-3 control-label">产品代号</label>
+      			<div class="col-sm-3">
+      				<input type="password" class="form-control" id="product_code" name="code" placeholder="产品代号">
+      			</div>
+      		</div>
+      
+      		<div class="form-group">
+      			<label for="jq-validation-required" class="col-sm-3 control-label">上线日期</label>
+      			<div class="col-sm-3">
+      				<input type="text" class="form-control" id="product_online_time" name="onlineTime" placeholder="上线日期">
+      			</div>
+      		</div>
+      
+      		<hr class="panel-wide">
+      
+      		<div class="form-group">
+      			<div class="col-sm-offset-3 col-sm-9">
+      				<button type="submit" class="btn btn-info"><i class="fa fa-check"></i> 保存 </button>
+      				<button type="button" class="btn btn-default"><i class="fa fa-undo"></i> 取消 </button>
+      			</div>
+      		</div>
+      	</form>
+      </div>
+	</div>
+  </div>
+</div>
+
+<@ui.js>
+<script src="/assets/js/validation/bootstrapvalidator.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+
+    $('#jq-validation-form').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'fa fa-check',
+            invalid: 'fa fa-close',
+            validating: 'fa fa-refresh'
+        },
+        submitHandler: function (validator, form, submitButton) {
+        	$.post(form.attr('action'), form.serialize(), function(result) {
+                // The result is a JSON formatted by your back-end
+                // I assume the format is as following:
+                //  {
+                //      valid: true,          // false if the account is not found
+                //      username: 'Username', // null if the account is not found
+                //  }
+                if (result.valid == true || result.valid == 'true') {
+                    // You can reload the current location
+                    window.location.reload();
+
+                    // Or use Javascript to update your page, such as showing the account name
+                    // $('#welcome').html('Hello ' + result.username);
+                } else {
+                    // The account is not found
+                    // Show the errors
+                    $('#errors').html('The account is not found').removeClass('hide');
+
+                    // Enable the submit buttons
+                    $('#loginForm').bootstrapValidator('disableSubmitButtons', false);
+                }
+            }, 'json');
+        },
+        fields: {
+            name: {
+                validators: {
+                    notEmpty: {
+                        message: '请填写产品名称'
+                    }
+                }
+            },
+            code: {
+                validators: {
+                    notEmpty: {
+                        message: '请填写产品代号'
+                    }
+                }
+            },
+            onlineTime: {
+                validators: {
+                    notEmpty: {
+                        message: '请填写上线日期'
+                    }
+                }
+            }
+        }
+    })
+    /* .find('button[data-toggle]')
+    .on('click', function () {
+        var $target = $($(this).attr('data-toggle'));
+        $target.toggle();
+        if (!$target.is(':visible')) {
+            $('#jq-validation-form').data('bootstrapValidator').disableSubmitButtons(false);
+        }
+    }) */.on('success.form.bv', function(e) {//点击提交之后
+        // Prevent form submission
+        e.preventDefault();
+
+        // Get the form instance
+        var $form = $(e.target);
+
+        // Get the BootstrapValidator instance
+        var bv = $form.data('bootstrapValidator');
+
+        console.log($form.serialize());
+        console.log($form.serializeArray());
+        console.log($form.serializeObject());
+        console.log(JSON.stringify($form.serializeObject()));
+        // Use Ajax to submit form data 提交至form标签中的action，result自定义
+        $.post($form.attr('action'), $form.serialize(), function(result) {
+        	//do something...
+        });
+    });
+});
+</script>
+</@ui.js>
+</@ui.layout>

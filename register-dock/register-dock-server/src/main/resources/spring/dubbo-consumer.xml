@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://code.alibabatech.com/schema/dubbo
 		http://code.alibabatech.com/schema/dubbo/dubbo.xsd" default-autowire="byName">
 
 	<dubbo:registry address="${dubbo.registry.address}" />
 	<dubbo:consumer timeout="${dubbo.consumer.timeout}" retries="${dubbo.consumer.retries}" />
-  
-	<dubbo:reference interface="com.dock.service.UserService" id="userService" check="false" version="3.0.0" />
+
+	<!--<dubbo:reference interface="com.tjcloud.data.redis.service.RedisCache" id="redisCache" check="false" version="3.0.0"/>-->
 
 </beans>

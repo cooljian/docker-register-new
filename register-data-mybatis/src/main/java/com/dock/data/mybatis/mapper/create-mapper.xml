@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dock.data.mybatis.mapper.create">
+    <sql id="inscolumn">
+        <if test="creatorId != null"> creatorId, </if>
+        <if test="createdBy != null"> createdBy, </if>
+        <if test="createdTime != null"> createdTime, </if>
+    </sql>
+    <sql id="insparam">
+        <if test="creatorId != null"> #{creatorId}, </if>
+        <if test="createdBy != null"> #{createdBy}, </if>
+        <if test="createdTime != null"> #{createdTime}, </if>
+    </sql>
+    <sql id="condition">
+        <if test="creatorId != null"> AND creatorId = #{creatorId} </if>
+        <if test="createdBy != null"> AND createdBy = #{createdBy} </if>
+        <if test="createdTime != null"> AND createdTime = #{createdTime} </if>
+    </sql>
+</mapper>

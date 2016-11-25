@@ -1,5 +1,6 @@
 package com.dock.core.utils;
 import com.dock.core.entity.ModelMap;
+
 public class ModelMapUtils {
     public ModelMapUtils() {
     }

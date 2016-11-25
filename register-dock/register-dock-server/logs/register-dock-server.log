@@ -318,9 +318,9 @@ return extension.getInvoker(arg0, arg1, arg2);
 2016-09-26 23:28:46,843 - org.springframework.beans.factory.support.DefaultListableBeanFactory -1508 [main] DEBUG  - Finished creating instance of bean 'org.springframework.context.event.internalEventListenerFactory'
 2016-09-26 23:28:46,844 - org.springframework.beans.factory.support.DefaultListableBeanFactory -1509 [main] DEBUG  - Creating shared instance of singleton bean 'userFacade'
 2016-09-26 23:28:46,844 - org.springframework.beans.factory.support.DefaultListableBeanFactory -1509 [main] DEBUG  - Creating instance of bean 'userFacade'
-2016-09-26 23:28:46,852 - org.springframework.beans.factory.annotation.InjectionMetadata -1517 [main] DEBUG  - Registered injected element on class [com.dock.facade.UserFacade]: AutowiredFieldElement for private com.dock.service.UserService com.dock.facade.UserFacade.userService
+2016-09-26 23:28:46,852 - org.springframework.beans.factory.annotation.InjectionMetadata -1517 [main] DEBUG  - Registered injected element on class [UserFacade]: AutowiredFieldElement for private UserService UserFacade.userService
 2016-09-26 23:28:46,852 - org.springframework.beans.factory.support.DefaultListableBeanFactory -1517 [main] DEBUG  - Eagerly caching bean 'userFacade' to allow for resolving potential circular references
-2016-09-26 23:28:46,856 - org.springframework.beans.factory.annotation.InjectionMetadata -1521 [main] DEBUG  - Processing injected element of bean 'userFacade': AutowiredFieldElement for private com.dock.service.UserService com.dock.facade.UserFacade.userService
+2016-09-26 23:28:46,856 - org.springframework.beans.factory.annotation.InjectionMetadata -1521 [main] DEBUG  - Processing injected element of bean 'userFacade': AutowiredFieldElement for private UserService UserFacade.userService
 2016-09-26 23:28:46,877 - org.springframework.beans.factory.support.DefaultListableBeanFactory -1542 [main] DEBUG  - Returning cached instance of singleton bean 'userService'
 2016-09-26 23:28:47,281 - com.alibaba.dubbo.common.extension.ExtensionLoader -1946 [main] DEBUG  -  [DUBBO] package com.alibaba.dubbo.registry;
 import com.alibaba.dubbo.common.extension.ExtensionLoader;
