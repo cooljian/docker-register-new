@@ -5,13 +5,13 @@
 	<a href="#" class="mm-dropdown"><i class="menu-icon fa fa-{{this.icon}}"></i><span class="mm-text">{{this.name}}</span></a>
 	<ul class="submenu">
 		{{#each this.additionalParameters.children}}
-		<li data-link="{{this.code}}"><a href="{{this.href}}"><span class="mm-text">{{this.name}}</span></a></li>
+		<li data-link="{{this.code}}"><a href="{{this.href}}?t={{../../token}}"><span class="mm-text">{{this.name}}</span></a></li>
 		{{/each}}
 	</ul>
 </li>
 {{else}}
 <li data-link="{{this.code}}">
-	<a href="{{this.href}}"><i class="menu-icon fa fa-{{this.icon}}"></i><span class="mm-text">{{this.name}}</span></a>
+	<a href="{{this.href}}?t={{../token}}"><i class="menu-icon fa fa-{{this.icon}}"></i><span class="mm-text">{{this.name}}</span></a>
 </li>
 {{/fi}}
 {{/each}}

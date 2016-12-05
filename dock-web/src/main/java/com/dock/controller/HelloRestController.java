@@ -27,7 +27,6 @@ public class HelloRestController
     @RequestMapping(value = "/hellorest/{name}", method = RequestMethod.GET)
     public ResponseResult helloRest(@PathVariable("name") String name) throws SQLException, IOException, ClassNotFoundException
     {
-        userService.get("00042a540b1a46c49dc317768d474f1e");
-        return ResponseResult.ok();
+        return ResponseResult.ok().setData(name);
     }
 }

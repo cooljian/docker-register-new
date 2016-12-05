@@ -1,0 +1,47 @@
+<@ui.body>
+<div class="login-container animated fadeInDown">
+    <div class="loginbox bg-white">
+        <div class="loginbox-title">赛事管理系统</div>
+        <div class="form-group loginbox-textbox">
+        	<span class="input-icon">
+        		<input type="text" class="form-control input-login" placeholder="用户名" />
+        		<i class="fa fa-user palegreen"></i>
+        	</span>
+        </div>
+        <div class="form-group loginbox-textbox">
+        	<span class="input-icon">
+        		<input type="text" class="form-control input-login" placeholder="密码" />
+        		<i class="fa fa-lock palegreen"></i>
+        	</span>
+        </div>
+        <!-- <div class="loginbox-forgot">
+            <a class="forgot-password" href="default.htm">忘记密码?</a>
+        </div> -->
+        <div class="loginbox-submit mt10">
+            <input type="button" class="btn btn-success signin-btn" value="登 录">
+            <a class="forgot-password" href="/forgot">忘记密码?</a>
+        </div>
+        <!-- <div class="loginbox-signup">
+            <a href="register.html">注册</a>
+        </div> -->
+        <div class="loginbox-or">
+            <div class="or-line"></div>
+            <div class="or">使用其他方式登录</div>
+        </div>
+        <div class="loginbox-social">
+            <div class="social-buttons">
+                <a href="default.htm" class="button-facebook">
+                    <i class="social-icon fa fa-qq"></i>
+                </a>
+                <a href="default.htm" class="button-twitter">
+                    <i class="social-icon fa fa-wechat"></i>
+                </a>
+                <a href="default.htm" class="button-google">
+                    <i class="social-icon fa fa-weibo"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="logobox"></div> -->
+</div>
+</@ui.body>

@@ -9,7 +9,7 @@
         <ul class="contacts-list">
             <li class="contact">
                 <div class="contact-avatar">
-                    <img src="/assets/img/avatars/divyia.jpg" />
+                    <img src="${jsRoot}/assets/img/avatars/divyia.jpg" />
                 </div>
                 <div class="contact-info">
                     <div class="contact-name">Divyia Philips</div>
@@ -24,7 +24,7 @@
             </li>
             <li class="contact">
                 <div class="contact-avatar">
-                    <img src="/assets/img/avatars/nicolai-larson.jpg" />
+                    <img src="${jsRoot}/assets/img/avatars/nicolai-larson.jpg" />
                 </div>
                 <div class="contact-info">
                     <div class="contact-name">Adam Johnson</div>
@@ -39,7 +39,7 @@
             </li>
             <li class="contact">
                 <div class="contact-avatar">
-                    <img src="/assets/img/avatars/john-smith.jpg" />
+                    <img src="${jsRoot}/assets/img/avatars/john-smith.jpg" />
                 </div>
                 <div class="contact-info">
                     <div class="contact-name">John Smith</div>
@@ -57,7 +57,7 @@
     <div class="chatbar-messages" style="display: none;">
         <div class="messages-contact">
             <div class="contact-avatar">
-                <img src="/assets/img/avatars/divyia.jpg" />
+                <img src="${jsRoot}/assets/img/avatars/divyia.jpg" />
             </div>
             <div class="contact-info">
                 <div class="contact-name">Divyia Philips</div>

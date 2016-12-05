@@ -1,0 +1,263 @@
+<@ui.init ["泳馆管理", "租户管理", "租户信息维护"], "tenants_list"/>
+
+<@ui.layout>
+<div class="row mt25">
+  <div class="col-lg-6 col-sm-12 col-xs-12">
+    <div class="panel">
+      <div class="panel-heading">
+      	<span class="panel-title" id="sp_title">新增租户</span>
+      	<input type="hidden" value="${pageType}" id="pageType"/>
+      </div>
+      <div class="panel-body">
+      	<form class="form-horizontal" id="jq-validation-form" novalidate="novalidate" action="/v3/tenants/new">
+      		<input type="hidden" value="${id}" id="id" name ="id"/>
+      		<div class="form-group">
+      			<label for="jq-validation-password" class="col-sm-3 control-label">公司代码</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<input type="text" class="form-control" id="code" name="code" placeholder="公司代码">
+      			</div>
+      		</div>
+      		<div class="form-group">
+      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">公司全称</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<input type="text" class="form-control" id="name" name="name" placeholder="公司全称">
+      			</div>
+      		</div>
+      		<div class="form-group">
+      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">公司简称</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<input type="text" class="form-control" id="shortName" name="shortName" placeholder="公司简称">
+      			</div>
+      		</div>
+      		<div class="form-group">
+      			<label for="jq-validation-password" class="col-sm-3 control-label">法人代表</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<input type="text" class="form-control" id="legalPerson" name="legalPerson" placeholder="法人代表">
+      			</div>
+      		</div>
+      		<div class="form-group">
+      			<label for="jq-validation-password" class="col-sm-3 control-label">法人联系方式</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<input type="text" class="form-control" id="phone" name="phone" placeholder="法人联系方式">
+      			</div>
+      		</div>
+      		<div class="form-group">
+      			<label for="jq-validation-password" class="col-sm-3 control-label">公司地址</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<div>
+		      			<select id="province" name="province" class="form-control" >
+		      				<option value=''>--请选择--</option>
+		      			</select>
+		      		</div>
+		      		<div>
+		      			<select id="city" name="city" class="form-control" >
+		      				<option value=''>--请选择--</option>
+		      			</select>
+		      		<div>
+		      		</div>
+		      			<select id="district" name="district" class="form-control" >
+		      				<option value=''>--请选择--</option>
+		      			</select>
+		      		</div>
+		      		<div style="padding-top:5px;">
+		      			<input type="text" class="form-control" id="address" name="address" placeholder="详细街道地址">
+		      		</div>
+      			</div>
+      		</div>
+      		<hr class="panel-wide">
+      
+      		<div class="form-group">
+      			<div class="col-sm-offset-3 col-sm-9">
+      				<button type="submit" id="submit_but" class="btn btn-info"><i class="fa fa-check"></i> 保存 </button>
+      				<button type="button" name="cancel_but" id="cancel_but" class="btn btn-default"><i class="fa fa-undo"></i> 取消 </button>
+      			</div>
+      		</div>
+      	</form>
+      </div>
+	</div>
+  </div>
+</div>
+
+<@ui.js>
+<script src="${jsRoot}/assets/js/validation/bootstrap-validator.js"></script>
+<script src="/assets/js/swim/swim.common.js"></script>
+<script type="text/javascript">
+
+//检查id是否已存在
+function checkIdIsExist(){
+	return $.isEmpty(swimCommon_getDataById("/v3/tenants/"+$("#id").val()));
+}
+
+$(document).ready(function () {
+	// 填充省份列表数据
+	swimCommon_bindAreaSelect({taget: $("#province"), param: {type: "2"}});
+
+	// 初始化表单数据
+	function initData(){
+		var v_data = swimCommon_getDataById("/v3/tenants/"+$("#id").val());
+		if($.isEmpty(v_data)){
+			return;
+		}
+		$("#code").val(v_data.code);
+		$("#name").val(v_data.name);
+		$("#shortName").val(v_data.shortName);
+		$("#province").val(v_data.province);
+		$("#address").val(v_data.address);
+		$("#phone").val(v_data.phone);
+		$("#postcode").val(v_data.postcode);
+		$("#legalPerson").val(v_data.legalPerson);
+		$("#city").empty();
+		$("#district").empty();
+		$("#city").append("<option value='"+v_data.city+"'>"+v_data.city+"</option>");
+		$("#district").append("<option value='"+v_data.district+"'>"+v_data.district+"</option>");
+
+		// 特殊处理
+		if($.isNotEmpty(v_data.province)){
+			// 填充城市列表数据
+			swimCommon_bindAreaSelect({taget: $("#city"), param: {type: "3",parentName: v_data.province}});
+			$("#city").val(v_data.city);
+		}
+		if($.isNotEmpty(v_data.city)){
+			// 填充区域列表数据
+			swimCommon_bindAreaSelect({taget: $("#district"), param: {type: "4",parentName: v_data.city}});
+			$("#district").val(v_data.district);
+		}
+	}
+	
+	var v_pageType = $("#pageType").val();
+	// 根据pageType特殊处理相关表单
+	if(v_pageType == "view"){
+		$("#sp_title").text("查看租户");
+		$("input[type='text']").attr("readonly",true);
+		$("select").attr("disabled",true);
+		$("#submit_but").remove();
+		$("#cancel_but").text("返回");
+		// 加载表单数据
+		initData();
+	}else if(v_pageType == "edit"){
+		$("#sp_title").text("编辑租户");
+		$("#id").attr("readonly",true);
+		// 加载表单数据
+		initData();
+	}
+	
+    $('#jq-validation-form').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'fa fa-check',
+            invalid: 'fa fa-close',
+            validating: 'fa fa-refresh'
+        },
+        fields: {
+            code: {
+                validators: {
+                    notEmpty: {
+                        message: '请填写公司代码'
+                    }
+                }
+            },
+            name: {
+                validators: {
+                    notEmpty: {
+                        message: '请填写公司全称'
+                    }
+                }
+            },
+            shortName: {
+                validators: {
+                    notEmpty: {
+                        message: '请填写公司简称'
+                    }
+                }
+            },
+	        legalPerson: {
+	            validators: {
+	                notEmpty: {
+	                    message: '请填写法人代表'
+	                }
+	            }
+	        },
+	        phone: {
+	            validators: {
+	                notEmpty: {
+	                    message: '请填写法人联系方式'
+	                },
+                    regexp: {
+                        regexp: /^[0-9\-]+$/,
+                        message: '请填写正确座机或手机号'
+                    }
+	            }
+	        },
+	        province: {
+	            validators: {
+	                notEmpty: {
+	                    message: '请填写地址-省份'
+	                }
+	            }
+	        },
+	        city: {
+	            validators: {
+	                notEmpty: {
+	                    message: '请填写地址-城市'
+	                }
+	            }
+	        },
+	        district: {
+	            validators: {
+	                notEmpty: {
+	                    message: '请填写地址-区域'
+	                }
+	            }
+	        },
+	        address: {
+	            validators: {
+	                notEmpty: {
+	                    message: '请填写地址-街道信息'
+	                }
+	            }
+	        }
+        }
+    })
+    .on('success.form.bv', function(e) {
+        // Prevent form submission
+        e.preventDefault();
+        // Get the form instance
+        var $form = $(e.target);
+        // reqUrl 处理
+        var req_url = "/v3/tenants";
+        var v_method = "POST";
+        if(v_pageType == "edit"){
+        	v_method = "PUT";
+        }
+        $.mAjax({
+			url: req_url,
+			method: v_method,
+			param: $form.serializeObject()
+		}, function(json) {
+            if(json.success == 'T'){
+                $.mAlert({"message":"新增成功."});
+                location.href="/v3/tenants/list";	
+            }else{
+				$.mAlert({ message: json.message || json.sub_message });
+            }
+		});
+    });
+    
+    // 【取消】button 注册事件
+    $("#cancel_but").click(function(){
+        location.href="/v3/tenants/list";
+    });
+
+    // 下拉列表【省份】项改变事件
+    $("#province").change(function(){
+		swimCommon_bindAreaSelect({taget: $("#city"), param: {type: "3" , parentCode: $(this).find("option:selected").attr("code")}});
+    });
+    
+    // 下拉列表【城市】项改变事件
+    $("#city").change(function(){
+    	swimCommon_bindAreaSelect({taget: $("#district"), param: {type: "4" , parentCode: $(this).find("option:selected").attr("code")}});
+    });
+});
+</script>
+</@ui.js>
+</@ui.layout>

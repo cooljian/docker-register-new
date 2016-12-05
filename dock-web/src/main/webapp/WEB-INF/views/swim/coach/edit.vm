@@ -1,0 +1,229 @@
+<@ui.init ["泳馆管理", "人员管理", "人员维护"], "swim_coach"/>
+
+<@ui.layout>
+<div class="row mt25">
+  <div class="col-lg-6 col-sm-12 col-xs-12">
+    <div class="panel">
+      <div class="panel-heading">
+      	<span class="panel-title" id="sp_title">新增人员</span>
+      	<input type="hidden" value="${pageType}" id="pageType"/>
+      	<input type="hidden" value="${req_id}" id="req_id"/>
+      </div>
+      <div class="panel-body">
+      	<form class="form-horizontal" id="jq-validation-form" novalidate="novalidate" action="/v3/swim/coachs/new">
+      		<div class="form-group">
+      			<label for="jq-validation-password" class="col-sm-3 control-label">人员类型</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<select id="personType" name="personType" class="form-control" >
+	      				<option value=''>--请选择--</option>
+	      				<option value='01'>救生员</option>
+	      				<option value='02'>教练</option>
+	      			</select>
+      			</div>
+      		</div>
+	      	<div class="form-group">
+      			<label for="jq-validation-password" class="col-sm-3 control-label">所属泳馆</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<input type="hidden" id="idCompany" name="idCompany" />
+      				<input type="hidden" id="id" name="id" />
+      				<select id="idSp" name="idSp" class="form-control" >
+	      				<option value=''>--请选择--</option>
+	      			</select>
+      			</div>
+      		</div>
+      		<div class="form-group">
+      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">姓名</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<input type="text" class="form-control" id="name" name="name" placeholder="姓名">
+      			</div>
+      		</div>
+      		
+      		<div class="form-group">
+      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">性别</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<label><input type="radio" name="gender"  class="colored-warning" value="true"><span class="text">男</span></label>
+      				<label><input type="radio" name="gender"  class="colored-warning" value="false"><span class="text">女</span></label>
+      			</div>
+      		</div>
+      		<div class="form-group">
+      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">出生年月</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<input type="text" class="form-control" id="birth" name="birth" placeholder="出生年月">
+      			</div>
+      		</div>
+      		<div class="form-group">
+      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">手机</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<input type="text" class="form-control" id="phone" name="phone" placeholder="手机">
+      			</div>
+      		</div>
+      		<div class="form-group">
+      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">邮箱</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<input type="text" class="form-control" id="email" name="email" placeholder="邮箱">
+      			</div>
+      		</div>
+      		<div class="form-group">
+      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">个人简介</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<textarea class="col-lg-12" id="introduction"  name="introduction" rows="5" placeholder="个人简介"></textarea>
+      			</div>
+      		</div>
+      		<hr class="panel-wide">
+      
+      		<div class="form-group">
+      			<div class="col-sm-offset-3 col-sm-9">
+      				<button type="submit" id="submit_but" class="btn btn-info"><i class="fa fa-check"></i> 保存 </button>
+      				<button type="button" name="cancel_but" id="cancel_but" class="btn btn-default"><i class="fa fa-undo"></i> 取消 </button>
+      			</div>
+      		</div>
+      	</form>
+      </div>
+	</div>
+  </div>
+</div>
+
+<@ui.js>
+<script src="${jsRoot}/assets/js/validation/bootstrap-validator.js"></script>
+<script src="${jsRoot}/assets/js/swim/swim.common.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function () {
+
+	// 初始化表单数据
+	function initcoachData(){
+		var v_data = swimCommon_getDataById("/v3/swim/coachs/"+$("#req_id").val());
+		if($.isEmpty(v_data)){
+			return;
+		}
+		// 填充form表单
+		swimCommon_fillFrom(v_data);
+		
+		if($.isNotEmpty(v_data.gender)){
+			// 填充性别
+			$("[name='gender'][value='"+ v_data.gender +"']").attr("checked",true);
+		}
+	}
+	
+	// 填充泳馆列表数据
+	swimCommon_bindSwimPoolSelect($("#idSp"),{});
+	
+	var v_pageType = $("#pageType").val();
+	// 根据pageType特殊处理相关表单
+	if(v_pageType == "view"){
+		$("#sp_title").text("查看人员");
+		$("input[type='text']").attr("readonly",true);
+		$("input[type='radio']").attr("disabled",true);
+		$("select").attr("disabled",true);
+		$("textarea").attr("disabled",true);
+		$("#submit_but").remove();
+		$("#cancel_but").text("返回");
+		// 加载表单数据
+		initcoachData();
+	}else if(v_pageType == "edit"){
+		$("#sp_title").text("编辑人员");
+		$("#id").attr("readonly",true);
+		// 加载表单数据
+		initcoachData();
+	}
+	
+    $('#jq-validation-form').bootstrapValidator({
+        message: 'This value is not valid',
+        fields: {
+        	idSp: {
+                validators: {
+                    notEmpty: {
+                        message: '请选择所属泳馆'
+                    }
+                }
+            },
+            personType: {
+                validators: {
+                    notEmpty: {
+                        message: '请选择人员类型'
+                    }
+                }
+            },
+            name: {
+                validators: {
+                    notEmpty: {
+                        message: '请填写人员姓名'
+                    }
+                }
+            },
+            birth: {
+                validators: {
+                    notEmpty: {
+                        message: '请填写出生年月'
+                    }
+                }
+            },
+            phone: {
+                validators: {
+                    notEmpty: {
+                        message: '请填写联系手机'
+                    },
+                    regexp: {
+                        regexp: /^1\d{10}$/,
+                        message: '手机格式有误'
+                    }
+                }
+            },
+            email: {
+                validators: {
+                    notEmpty: {
+                        message: '请填写联系人邮箱'
+                    },
+                    regexp: {
+                        regexp: /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/,
+                        message: '邮箱格式有误'
+                    }
+                }
+            },
+            introduction: {
+                validators: {
+                    notEmpty: {
+                        message: '请填写个人简介'
+                    }
+                }
+            }
+        }
+    })
+    .on('success.form.bv', function(e) {
+        // Prevent form submission
+        e.preventDefault();
+        // Get the form instance
+        var $form = $(e.target);
+        // reqUrl 处理
+        var req_url = "/v3/swim/coachs";
+        var v_method = "POST";
+        if(v_pageType == "edit"){
+        	v_method = "PUT";
+        }
+        $.mAjax({
+			url: req_url,
+			method: v_method,
+			param: $form.serializeObject()
+		}, function(json) {
+            if(json.success == 'T'){
+                $.mAlert({"message":"新增成功."});
+                location.href="/v3/swim/coachs/list";	
+            }else{
+				$.mAlert({ message: json.message || json.sub_message });
+            }
+		});
+    });
+    
+    // 【取消】button 注册事件
+    $("#cancel_but").click(function(){
+        location.href="/v3/swim/coachs/list";
+    });
+
+    // 下拉列表【所属泳馆】项改变事件
+    $("#idSp").change(function(){
+		$("#idCompany").val($(this).find("option:selected").attr("idCompany"));
+    });
+});
+</script>
+</@ui.js>
+</@ui.layout>

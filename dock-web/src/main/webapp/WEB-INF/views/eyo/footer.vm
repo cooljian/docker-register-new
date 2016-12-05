@@ -1,18 +1,18 @@
 <!-- Basic Scripts -->
-<script src="/assets/js/jquery.min.js"></script>
-<script src="/assets/js/bootstrap.min.js"></script>
-<script src="/assets/js/storage/jquery.cookie.min.js"></script>
-<script src="/assets/js/storage/jquery.storage.min.js"></script>
-<script src="/assets/js/slimscroll/jquery.slimscroll.min.js"></script>
-<script src="/assets/js/bootbox/bootbox.min.js"></script>
-<script src="/assets/js/handlebars/handlebars.js"></script>
-<script src="/assets/js/select2/select2.min.js"></script>
-<script src="/assets/js/toastr/toastr.js"></script>
-<script src="/assets/js/datatable/jquery.dataTables.js"></script>
-<script src="/assets/js/datatable/dataTables.bootstrap.js"></script>
+<script src="${jsRoot}/assets/js/jquery.min.js"></script>
+<script src="${jsRoot}/assets/js/bootstrap.min.js"></script>
+<script src="${jsRoot}/assets/js/storage/jquery.cookie.min.js"></script>
+<script src="${jsRoot}/assets/js/storage/jquery.storage.min.js"></script>
+<script src="${jsRoot}/assets/js/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="${jsRoot}/assets/js/bootbox/bootbox.min.js"></script>
+<script src="${jsRoot}/assets/js/handlebars/handlebars.js"></script>
+<script src="${jsRoot}/assets/js/select2/select2.min.js"></script>
+<script src="${jsRoot}/assets/js/toastr/toastr.js"></script>
+<script src="${jsRoot}/assets/js/datatable/jquery.dataTables.js"></script>
+<script src="${jsRoot}/assets/js/datatable/dataTables.bootstrap.js"></script>
 
 <!-- Beyond Scripts -->
-<script src="/assets/js/beyond.min.js"></script>
+<script src="${jsRoot}/assets/js/beyond.min.js"></script>
 
 <!-- global js -->
-<script src="/assets/js/global.js"></script>
+<script src="${jsRoot}/assets/js/global.js"></script>

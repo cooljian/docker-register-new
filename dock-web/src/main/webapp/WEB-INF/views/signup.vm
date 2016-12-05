@@ -9,15 +9,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<!-- Pixel Admin's css -->
-	<link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="/assets/css/pixel-admin.min.css" rel="stylesheet" type="text/css">
-	<link href="/assets/css/admin.min.css" rel="stylesheet" type="text/css">
-	<link href="/assets/css/pages.min.css" rel="stylesheet" type="text/css">
-	<link href="/assets/css/rtl.min.css" rel="stylesheet" type="text/css">
-	<link href="/assets/css/themes.min.css" rel="stylesheet" type="text/css">
+	<link href="${jsRoot}/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="${jsRoot}/assets/css/pixel-admin.min.css" rel="stylesheet" type="text/css">
+	<link href="${jsRoot}/assets/css/admin.min.css" rel="stylesheet" type="text/css">
+	<link href="${jsRoot}/assets/css/pages.min.css" rel="stylesheet" type="text/css">
+	<link href="${jsRoot}/assets/css/rtl.min.css" rel="stylesheet" type="text/css">
+	<link href="${jsRoot}/assets/css/themes.min.css" rel="stylesheet" type="text/css">
 
 	<!--[if lt IE 9]>
-		<script src="/assets/js/ie.min.js"></script>
+		<script src="${jsRoot}/assets/js/ie.min.js"></script>
 	<![endif]-->
 
 
@@ -157,15 +157,15 @@
 	<div class="have-account">已经有账号? <a href="pages-signin.html">登录</a></div>
 
 <!--[if !IE]> -->
-	<script src="/assets/js/jquery-2.2.0.min.js"></script>
+	<script src="${jsRoot}/assets/js/jquery-2.2.0.min.js"></script>
 <!-- <![endif]-->
 <!--[if lte IE 9]>
-	<script src="/assets/js/jquery-1.12.0.min.js"></script>
+	<script src="${jsRoot}/assets/js/jquery-1.12.0.min.js"></script>
 <![endif]-->
 
 <!-- Pixel Admin's js -->
-<script src="/assets/js/bootstrap.min.js"></script>
-<script src="/assets/js/pixel/pixel-admin.min.js"></script>
+<script src="${jsRoot}/assets/js/bootstrap.min.js"></script>
+<script src="${jsRoot}/assets/js/pixel/pixel-admin.min.js"></script>
 
 <script type="text/javascript">
 	// Resize BG

@@ -18,18 +18,26 @@
       				<input type="text" class="form-control" id="id" name="id" placeholder="类型编码">
       			</div>
       		</div>
-      		
       		<div class="form-group">
       			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">类型名称</label>
       			<div class="col-lg-9 col-sm-9 col-xs-9">
       				<input type="text" class="form-control" id="name" name="name" placeholder="类型名称">
       			</div>
       		</div>
+      		<!-- <div class="form-group">
+      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">是否启用</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<select id="disabled" class="form-control" name="disabled" >
+      					<option value="0">启用</option>
+      					<option value="1">禁用</option>
+      				</select>
+      			</div>
+      		</div> -->
       		<hr class="panel-wide">
       
       		<div class="form-group">
       			<div class="col-sm-offset-3 col-sm-9">
-      				<button type="submit" class="btn btn-info"><i class="fa fa-check"></i> 保存 </button>
+      				<button type="submit" id="submit_but" class="btn btn-info"><i class="fa fa-check"></i> 保存 </button>
       				<button type="button" name="cancel_but" id="cancel_but" class="btn btn-default"><i class="fa fa-undo"></i> 取消 </button>
       			</div>
       		</div>
@@ -40,7 +48,7 @@
 </div>
 
 <@ui.js>
-<script src="/assets/js/validation/bootstrapvalidator.js"></script>
+<script src="${jsRoot}/assets/js/validation/bootstrap-validator.js"></script>
 <script type="text/javascript">
 
 //检查id是否已存在
@@ -80,6 +88,7 @@ function initData(){
 	}
 	$("#id").val(v_data.id);
 	$("#name").val(v_data.name);
+	//$("#disabled").val(v_data.disabled?1:0);
 }
 
 $(document).ready(function () {
@@ -88,13 +97,12 @@ $(document).ready(function () {
 	if(v_pageType == "view"){
 		$("#sp_title").text("查看类型");
 		$("input[type='text']").attr("readonly",true);
-		$("button[type='submit'").remove();
-		$("button[name='cancel_but'").text("返回");
+		$("#submit_but").remove();
+		$("#cancel_but").text("返回");
 		// 加载表单数据
 		initData();
 	}else if(v_pageType == "edit"){
 		$("#sp_title").text("编辑类型");
-		$("input[name='id']").attr("readonly",true);
 		$("#id").attr("readonly",true);
 		// 加载表单数据
 		initData();
@@ -102,11 +110,6 @@ $(document).ready(function () {
 	
     $('#jq-validation-form').bootstrapValidator({
         message: 'This value is not valid',
-        feedbackIcons: {
-            valid: 'fa fa-check',
-            invalid: 'fa fa-close',
-            validating: 'fa fa-refresh'
-        },
         fields: {
         	id: {
                 validators: {
@@ -144,7 +147,7 @@ $(document).ready(function () {
                         message: '类型名称长度必须在3到20之间'
                     },
                     different: {
-                        field: 'swimType',
+                        field: 'id',
                         message: '不能和类型编码相同'
                     }
                 }
@@ -164,18 +167,19 @@ $(document).ready(function () {
         // Get the form instance
         var $form = $(e.target);
         // reqUrl 处理
-        var req_url = "/v3/swim/types/new";
+        var req_url = "/v3/swim/types";
+        var v_method = "POST";
         if(v_pageType == "edit"){
-        	req_url = "/v3/swim/types/modify";
+        	v_method = "PUT";
         }
         $.mAjax({
 			url: req_url,
-			method: "PUT",
-			param: JSON.stringify($form.serializeObject())
+			method: v_method,
+			param: $form.serializeObject()
 		}, function(json) {
             if(json.success == 'T'){
                 $.mAlert({"message":"新增成功."});
-                location.href="/v3/swim/type/list";	
+                location.href="/v3/swim/types/list";	
             }else{
 				$.mAlert({ message: json.message || json.sub_message });
             }
@@ -184,7 +188,7 @@ $(document).ready(function () {
     
     // 【取消】button 注册事件
     $("#cancel_but").click(function(){
-        location.href="/v3/swim/type/list?name=1231";
+        location.href="/v3/swim/types/list";
     });
 });
 </script>

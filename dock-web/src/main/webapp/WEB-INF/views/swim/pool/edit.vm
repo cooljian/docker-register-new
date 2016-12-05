@@ -1,0 +1,532 @@
+<@ui.init ["泳馆管理", "泳馆管理", "泳馆维护"], "swim_pool"/>
+
+<@ui.layout>
+<div class="row mt25 no-margin">
+  <form action="" class="panel form-horizontal" id="jq-validation-form" novalidate="novalidate">
+	<div class="panel-heading">
+		<span class="panel-title" id="sp_title">新增泳馆</span>
+		<input type="hidden" id="req_id" name="req_id" value="${ req_id }"/>
+		<input type="hidden" id="pageType" name="pageType" value="${ pageType }"/>
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label for="jq-validation-password" class="col-sm-3 control-label">所属公司</label>
+	      			<div class="col-sm-8">
+	      				<input type="hidden" id="id" name="id" >
+		      			<select id="idCompany" name="idCompany" class="form-control" >
+		      				<option value=''>--请选择--</option>
+		      			</select>
+	      			</div>
+				</div>
+			</div><!-- col-sm-6 -->
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+				<div class="form-group">
+					<label for="jq-validation-email" class="col-sm-3 control-label">泳馆名称</label>
+	      			<div class="col-sm-8">
+	      				<input type="text" class="form-control" id="spName" name="spName" placeholder="泳馆名称">
+	      			</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+	      		<div class="form-group">
+	      			<label for="jq-validation-password" class="col-sm-3 control-label">泳馆类型</label>
+	      			<div class="col-sm-8">
+	      				<select id="swimType" name="swimType" class="form-control" >
+		      				<option value=''>--请选择--</option>
+		      			</select>
+	      			</div>
+	      		</div>
+			</div><!-- col-sm-6 -->
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+	      		<div class="form-group">
+	      			<label for="jq-validation-email" class="col-sm-3 control-label">营业情况</label>
+	      			<div class="col-sm-8">
+	      				<select id="tradeSituation" name="tradeSituation" class="form-control" >
+		      				<option value=''>--请选择--</option>
+		      				<option value='01'>正常</option>
+		      				<option value='02'>休业</option>
+		      			</select>
+	      			</div>
+	      		</div>
+      		</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group">
+	      			<label for="jq-validation-password" class="col-sm-3 control-label">提供服务</label>
+	      			<div class="col-sm-8" id="div_service_type">
+	      				<label><input type="checkbox" name="swimServiceType"  class="colored-warning" value="01"><span class="text">WIFI</span></label>
+	      				<label><input type="checkbox" name="swimServiceType"  class="colored-warning" value="02"><span class="text">婴儿池</span></label>
+	      				<label><input type="checkbox" name="swimServiceType"  class="colored-warning" value="03"><span class="text">洗浴用品</span></label>
+	      			</div>
+	      		</div>
+	      	</div><!-- col-sm-6 -->
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+	      		<div class="form-group">
+	      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">GPS 坐标</label>
+	      			<div class="col-sm-8">
+	      				<label for="jq-validation-email" class="col-sm-1 control-label"  style="text-align: left;">X：</label>
+	      				<input type="text" class="col-sm-4" id="longitude" name="longitude" placeholder="X坐标">
+	      				<label for="jq-validation-email" class="col-sm-1 control-label"  style="text-align: left;">Y：</label>
+	      				<input type="text" class="col-sm-4" id="latitude" name="latitude" placeholder="Y坐标">
+	      			</div>
+	      		</div>
+	      	</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-6">
+	      		<div class="form-group">
+	      			<label for="jq-validation-password" class="col-sm-3 control-label">泳馆地址</label>
+	      			<div class="col-sm-8">
+	      				<div class="col-sm-4" style="padding:2px;">
+			      			<select id="areaProvince" name="areaProvince" class="form-control" >
+			      				<option value=''>--请选择--</option>
+			      			</select>
+			      		</div>
+			      		<div class="col-sm-4" style="padding:2px;">
+			      			<select id="areaCity" name="areaCity" class="form-control" >
+			      				<option value=''>--请选择--</option>
+			      			</select>
+			      		</div>
+			      		<div  class="col-sm-4" style="padding:2px;">
+			      			<select id="areaRegion" name="areaRegion" class="form-control" >
+			      				<option value=''>--请选择--</option>
+			      			</select>
+			      		</div>
+	      			</div>
+	      		</div>
+	      	</div><!-- col-sm-6 -->
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+	      		<div class="form-group">
+	      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">详细街道地址</label>
+	      			<div class="col-sm-8">
+	      				<input type="text" class="form-control" id="areaStreet" name="areaStreet" placeholder="详细街道地址">
+	      			</div>
+	      		</div>
+	      	</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+	      		<div class="form-group">
+	      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">联系电话</label>
+	      			<div class="col-sm-8">
+	      				<input type="text" class="form-control" id="phone" name="phone" placeholder="联系电话">
+	      			</div>
+	      		</div> 
+	      	</div><!-- col-sm-6 -->
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+	      		<div class="form-group">
+	      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">定员人数</label>
+	      			<div class="col-sm-8">
+	      				<input type="text" class="form-control" id="fixedNumber" name="fixedNumber" placeholder="定员人数">
+	      			</div>
+	      		</div>
+	      	</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+	      		<div class="form-group">
+	      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">营业-工作日</label>
+	      			<div class="col-sm-8">
+	      				<input type="text" class="col-lg-5" id="workingHoursBegin" name="workingHoursBegin" placeholder="起始时间">
+	      				<label for="jq-validation-email" class="col-lg-1" >~</label>
+	      				<input type="text" class="col-lg-5" id="workingHoursEnd" name="workingHoursEnd" placeholder="截止时间">
+	      			</div>
+	      		</div>
+	      	</div><!-- col-sm-6 -->
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+	      		<div class="form-group">
+	      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">营业-节假日</label>
+	      			<div class="col-sm-8">
+	      				<input type="text" class="col-lg-5" id="weekendHoursBegin" name="weekendHoursBegin" placeholder="起始时间">
+	      				<label for="jq-validation-email" class="col-lg-1" >~</label>
+	      				<input type="text" class="col-lg-5" id="weekendHoursEnd" name="weekendHoursEnd" placeholder="截止时间">
+	      			</div>
+	      		</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group">
+	      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">建设单位联系人</label>
+	      			<div class="col-sm-8">
+	      				<input type="text" class="form-control" id="jsdwPerson" name="jsdwPerson" placeholder="建设单位联系人">
+	      			</div>
+	      		</div>
+	      	</div><!-- col-sm-6 -->
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+	      		<div class="form-group">
+	      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">建设单位联系人-电话</label>
+	      			<div class="col-sm-8">
+	      				<input type="text" class="form-control" id="jsdwPhone" name="jsdwPhone" placeholder="建设单位联系人-电话">
+	      			</div>
+	      		</div>
+	      	</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+	      		<div class="form-group">
+	      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">意向工程设计单位（全称）</label>
+	      			<div class="col-sm-8">
+	      				<input type="text" class="form-control" id="designUnits" name="designUnits" placeholder="意向工程设计单位（全称）">
+	      			</div>
+	      		</div>
+	      	</div><!-- col-sm-6 -->
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+	      		<div class="form-group">
+	      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">意向工程施工单位（全称）</label>
+	      			<div class="col-sm-8">
+	      				<input type="text" class="form-control" id="constructionUnit" name="constructionUnit" placeholder="意向工程施工单位（全称）">
+	      			</div>
+	      		</div>
+	      	</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+	      		<div class="form-group">
+	      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">建设总面积（㎡）</label>
+	      			<div class="col-sm-8">
+	      				<input type="text" class="form-control" id="totalAcreage" name="totalAcreage" placeholder="建设总面积（㎡）">
+	      			</div>
+	      		</div>
+	      	</div><!-- col-sm-6 -->
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+	      		<div class="form-group">
+	      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">池水面积（㎡）</label>
+	      			<div class="col-sm-8">
+	      				<input type="text" class="form-control" id="waterAcreage" name="waterAcreage" placeholder="池水面积（㎡）">
+	      			</div>
+	      		</div>
+	      	</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+	      		<div class="form-group">
+	      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">其他辅助配套面积（㎡）</label>
+	      			<div class="col-sm-8">
+	      				<input type="text" class="form-control" id="supportingAcreage" name="supportingAcreage" placeholder="其他辅助配套面积（㎡）">
+	      			</div>
+	      		</div>
+	      	</div><!-- col-sm-6 -->
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+	      		<div class="form-group">
+	      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">游泳池总预算（万元）</label>
+	      			<div class="col-sm-8">
+	      				<input type="text" class="form-control" id="totalBudget" name="totalBudget" placeholder="游泳池总预算（万元）">
+	      			</div>
+	      		</div>
+	      	</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+	      		<div class="form-group">
+	      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">游泳池建设实际费用（万元）</label>
+	      			<div class="col-sm-8">
+	      				<input type="text" class="form-control" id="actualCost" name="actualCost" placeholder="游泳池建设实际费用（万元）">
+	      			</div>
+	      		</div>
+	      	</div><!-- col-sm-6 -->
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+	      		<div class="form-group">
+	      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">进场开工年月</label>
+	      			<div class="col-sm-8">
+	      				<input type="text" class="form-control" id="approachStartDate" name="approachStartDate" placeholder="进场开工年月">
+	      			</div>
+	      		</div>
+	      	</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+	      		<div class="form-group">
+	      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">全部工程竣工年月</label>
+	      			<div class="col-sm-8">
+	      				<input type="text" class="form-control" id="completionDate" name="completionDate" placeholder="全部工程竣工年月">
+	      			</div>
+	      		</div>
+	      	</div><!-- col-sm-6 -->
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+	      		<div class="form-group">
+	      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">开放管理单位</label>
+	      			<div class="col-sm-8">
+	      				<input type="text" class="form-control" id="managementUnit" name="managementUnit" placeholder="开放管理单位">
+	      			</div>
+	      		</div>
+	      	</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+	      		<div class="form-group">
+	      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">年度管理经费（万元）</label>
+	      			<div class="col-sm-8">
+	      				<input type="text" class="form-control" id="managementExpenses" name="managementExpenses" placeholder="年度管理经费（万元）">
+	      			</div>
+	      		</div>
+	      	</div><!-- col-sm-6 -->
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+			<div class="form-group">
+	      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">陆上配套设施主要建设内容</label>
+	      			<div class="col-sm-8">
+	      				<input type="text" class="form-control" id="landBasedConstruction" name="landBasedConstruction" placeholder="陆上配套设施主要建设内容">
+	      			</div>
+	      		</div>
+	      	</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-6">
+	      		<div class="form-group">
+	      			<label for="jq-validation-text" class="col-lg-3 col-sm-3 col-xs-3 control-label">交通信息</label>
+	      			<div class="col-sm-8">
+	      				<textarea class="col-lg-12" id="travelInformation"  name="travelInformation" rows="4" placeholder="交通信息"></textarea>
+	      			</div>
+	      		</div>
+	      	</div><!-- col-sm-6 -->
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+	      		<div class="form-group">
+	      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">备注</label>
+	      			<div class="col-sm-8">
+	      				<textarea class="col-lg-12" id="remark"  name="remark" rows="4" placeholder="备注"></textarea>
+	      			</div>
+	      		</div>
+			</div>
+		</div>
+	</div>
+	<div class="panel-footer text-right">
+		<button type="submit" id="submit_but" class="btn btn-info"><i class="fa fa-check"></i> 保存 </button>
+		<button type="button" name="cancel_but" id="cancel_but" class="btn btn-default"><i class="fa fa-undo"></i> 取消 </button>
+	</div>
+</form>
+</div>
+
+<@ui.js>
+<script src="${jsRoot}/assets/js/validation/bootstrap-validator.js"></script>
+<script src="${jsRoot}/assets/js/swim/swim.common.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function () {
+	// 初始化表单数据
+	function initSwimPoolData(){
+		var v_data = swimCommon_getDataById("/v3/swim/pools/"+$("#req_id").val());
+		if($.isEmpty(v_data)){
+			return;
+		}
+		// 填充form表单
+		swimCommon_fillFrom(v_data);
+		
+		// 特殊处理
+		if($.isNotEmpty(v_data.areaProvince)){
+			// 填充城市列表数据
+			swimCommon_bindAreaSelect({taget: $("#areaCity"), param: {type: "3",parentName: v_data.areaProvince}});
+			$("#areaCity").val(v_data.areaCity);
+		}
+		if($.isNotEmpty(v_data.areaCity)){
+			// 填充区域列表数据
+			swimCommon_bindAreaSelect({taget: $("#areaRegion"), param: {type: "4",parentName: v_data.areaCity}});
+			$("#areaRegion").val(v_data.areaRegion);
+		}
+		if($.isNotEmpty(v_data.swimServiceType)){
+			// 填充提供服务类型，checkBox
+			$.each(v_data.swimServiceType.split(";"), function(index,val_str){        
+				$("[name='swimServiceType'][value='"+ val_str +"']").attr("checked",true);
+		    });
+		}
+	}
+	
+	// 填充公司列表数据
+	swimCommon_bindCompanySelect($("#idCompany"),{});
+	// 填充泳馆类型列表数据
+	swimCommon_bindSwimTypeSelect($("#swimType"),{disabled: 0});
+	// 填充提供服务类型
+	swimCommon_bindSwimServiceTypeSelect($("#div_service_type"),{});
+	// 填充省份列表数据
+	swimCommon_bindAreaSelect({taget: $("#areaProvince"), param: {type: "2"}});
+	
+	
+	var v_pageType = $("#pageType").val();
+	// 根据pageType特殊处理相关表单
+	if(v_pageType == "view"){
+		$("#sp_title").text("查看泳馆");
+		$("input[type='text']").attr("readonly",true);
+		$("input[type='checkbox']").attr("disabled",true);
+		$("select").attr("disabled",true);
+		$("textarea").attr("disabled",true);
+		$("#submit_but").remove();
+		$("#cancel_but").text("返回");
+		// 加载表单数据
+		initSwimPoolData();
+	}else if(v_pageType == "edit"){
+		$("#sp_title").text("编辑泳馆");
+		$("#id").attr("readonly",true);
+		// 加载表单数据
+		initSwimPoolData();
+	}
+	
+    $('#jq-validation-form').bootstrapValidator({
+        message: 'This value is not valid',
+        fields: {
+        	id: {
+                validators: {
+                    notEmpty: {
+                        message: '请填写泳馆编码'
+                    },
+                    stringLength: {
+                        min: 3,
+                        max: 10,
+                        message: '泳馆编码长度必须在3到10之间'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_\.]+$/,
+                        message: '请填写数字和字母_.'
+                    },
+                    callback: {  
+                        message: '泳馆编码已存在.',  
+                        callback: function(value, validator) {
+                           if(v_pageType == "edit"){
+                        	   return true;
+                           }
+                           return checkIdIsExist();
+                        }  
+                    }
+                }
+            },
+            idCompany: {
+                validators: {
+                    notEmpty: {
+                        message: '请选择所属公司'
+                    }
+                }
+            },
+            swimType: {
+                validators: {
+                    notEmpty: {
+                        message: '请选择泳馆类型'
+                    }
+                }
+            },
+            spName: {
+                validators: {
+                    notEmpty: {
+                        message: '请填写泳馆名称'
+                    }
+                }
+            },
+            
+            areaProvince: {
+                validators: {
+                    notEmpty: {
+                        message: '请选择地址省份信息'
+                    }
+                }
+            },
+            areaCity: {
+                validators: {
+                    notEmpty: {
+                        message: '请选择地址城市信息'
+                    }
+                }
+            },
+            areaRegion: {
+                validators: {
+                    notEmpty: {
+                        message: '请选择地址区域信息'
+                    }
+                }
+            },
+            areaStreet: {
+                validators: {
+                    notEmpty: {
+                        message: '请填写地址街道信息'
+                    }
+                }
+            },
+            
+            phone: {
+                validators: {
+                    notEmpty: {
+                        message: '请填写联系电话'
+                    }
+                }
+            },
+            tradeSituation: {
+                validators: {
+                    notEmpty: {
+                        message: '请选择营业情况'
+                    }
+                }
+            },
+            fixedNumber: {
+                validators: {
+                    notEmpty: {
+                        message: '请填写定员人数'
+                    }
+                }
+            },
+            totalAcreage: {
+                validators: {
+                    notEmpty: {
+                        message: '请填写建设总面积'
+                    }
+                }
+            },
+            waterAcreage: {
+                validators: {
+                    notEmpty: {
+                        message: '请填写池水总面积'
+                    }
+                }
+            }
+        }
+    }).on('success.form.bv', function(e) {
+        // Prevent form submission
+        e.preventDefault();
+        // Get the form instance
+        var $form = $(e.target);
+        // reqUrl 处理
+        var req_url = "/v3/swim/pools";
+        var v_method = "POST";
+        if(v_pageType == "edit"){
+        	v_method = "PUT";
+        }
+        
+        // 请求的param
+        var p_param = $form.serializeObject();
+        //p_param.swimServiceType = swimCommon_joinArrayData(p_param.swimServiceType,";");
+        p_param.swimServiceType = p_param.swimServiceType.join(';');
+        
+        $.mAjax({
+			url: req_url,
+			method: v_method,
+			param: p_param
+		}, function(json) {
+            if(json.success == 'T'){
+                $.mSuccess("新增成功.");
+                location.href="/v3/swim/pools/list";	
+            }else{
+				$.mAlert({ message: json.message || json.sub_message });
+            }
+		});
+    });
+    
+    // 【取消】button 注册事件
+    $("#cancel_but").click(function(){
+        location.href="/v3/swim/pools/list";
+    });
+    // 下拉列表【省份】项改变事件
+    $("#areaProvince").change(function(){
+		swimCommon_bindAreaSelect({taget: $("#areaCity"), param: {type: "3" , parentCode: $(this).find("option:selected").attr("code")}});
+    });
+    
+    // 下拉列表【城市】项改变事件
+    $("#areaCity").change(function(){
+    	swimCommon_bindAreaSelect({taget: $("#areaRegion"), param: {type: "4" , parentCode: $(this).find("option:selected").attr("code")}});
+    });
+});
+</script>
+</@ui.js>
+</@ui.layout>

@@ -1,0 +1,240 @@
+<@ui.init ["泳馆管理", "联系人管理", "联系人维护"], "swim_contact_person"/>
+
+<@ui.layout>
+<div class="row mt25">
+  <div class="col-lg-6 col-sm-12 col-xs-12">
+    <div class="panel">
+      <div class="panel-heading">
+      	<span class="panel-title" id="sp_title">新增联系人</span>
+      	<input type="hidden" value="${pageType}" id="pageType"/>
+      	<input type="hidden" value="${req_id}" id="req_id"/>
+      </div>
+      <div class="panel-body">
+      	<form class="form-horizontal" id="jq-validation-form" novalidate="novalidate" action="/v3/swim/contact/persons/new">
+      		<div class="form-group">
+      			<label for="jq-validation-password" class="col-sm-3 control-label">所属泳馆</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<input type="hidden" id="idCompany" name="idCompany" />
+      				<input type="hidden" id="id" name="id" />
+      				<select id="idSp" name="idSp" class="form-control" >
+	      				<option value=''>--请选择--</option>
+	      			</select>
+      			</div>
+      		</div>
+      		<div class="form-group">
+      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">姓名</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<input type="text" class="form-control" id="name" name="name" placeholder="姓名">
+      			</div>
+      		</div>
+      		
+      		<div class="form-group">
+      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">性别</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<label><input type="radio" name="gender"  class="colored-warning" value="true"><span class="text">男</span></label>
+      				<label><input type="radio" name="gender"  class="colored-warning" value="false"><span class="text">女</span></label>
+      			</div>
+      		</div>
+      		<div class="form-group">
+      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">称呼</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<input type="text" class="form-control" id="nickname" name="nickname" placeholder="称呼">
+      			</div>
+      		</div>
+      		<div class="form-group">
+      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">电话</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<input type="text" class="form-control" id="landlinePhone" name="landlinePhone" placeholder="电话">
+      			</div>
+      		</div>
+      		<div class="form-group">
+      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">手机</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<input type="text" class="form-control" id="phone" name="phone" placeholder="手机">
+      			</div>
+      		</div>
+      		<div class="form-group">
+      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">邮箱</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<input type="text" class="form-control" id="email" name="email" placeholder="邮箱">
+      			</div>
+      		</div>
+      		<div class="form-group">
+      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">职位</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<input type="text" class="form-control" id="position" name="position" placeholder="职位">
+      			</div>
+      		</div>
+      		<div class="form-group">
+      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">是否默认联系人</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<label><input type="radio" name="isDefault"  class="colored-warning" value="true"><span class="text">是</span></label>
+      				<label><input type="radio" name="isDefault"  class="colored-warning" value="false"><span class="text">否</span></label>
+      			</div>
+      		</div>
+      		<div class="form-group">
+      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">备注</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<textarea class="col-lg-12" id="remark"  name="remark" rows="4" placeholder="备注"></textarea>
+      			</div>
+      		</div>
+      		<hr class="panel-wide">
+      
+      		<div class="form-group">
+      			<div class="col-sm-offset-3 col-sm-9">
+      				<button type="submit" id="submit_but" class="btn btn-info"><i class="fa fa-check"></i> 保存 </button>
+      				<button type="button" name="cancel_but" id="cancel_but" class="btn btn-default"><i class="fa fa-undo"></i> 取消 </button>
+      			</div>
+      		</div>
+      	</form>
+      </div>
+	</div>
+  </div>
+</div>
+
+<@ui.js>
+<script src="${jsRoot}/assets/js/validation/bootstrap-validator.js"></script>
+<script src="${jsRoot}/assets/js/swim/swim.common.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function () {
+
+	// 初始化表单数据
+	function initContactPersonData(){
+		var v_data = swimCommon_getDataById("/v3/swim/contact/persons/"+$("#req_id").val());
+		if($.isEmpty(v_data)){
+			return;
+		}
+		// 填充form表单
+		swimCommon_fillFrom(v_data);
+		
+		// 特殊处理
+		if($.isNotEmpty(v_data.isDefault)){
+			// 填充默认联系人
+			$("[name='isDefault'][value='"+ v_data.isDefault +"']").attr("checked",true);
+		}
+		if($.isNotEmpty(v_data.gender)){
+			// 填充性别
+			$("[name='gender'][value='"+ v_data.gender +"']").attr("checked",true);
+		}
+	}
+	
+	// 填充泳馆列表数据
+	swimCommon_bindSwimPoolSelect($("#idSp"),{});
+	
+	var v_pageType = $("#pageType").val();
+	// 根据pageType特殊处理相关表单
+	if(v_pageType == "view"){
+		$("#sp_title").text("查看联系人");
+		$("input[type='text']").attr("readonly",true);
+		$("input[type='radio']").attr("disabled",true);
+		$("select").attr("disabled",true);
+		$("textarea").attr("disabled",true);
+		$("#submit_but").remove();
+		$("#cancel_but").text("返回");
+		// 加载表单数据
+		initContactPersonData();
+	}else if(v_pageType == "edit"){
+		$("#sp_title").text("编辑联系人");
+		$("#id").attr("readonly",true);
+		// 加载表单数据
+		initContactPersonData();
+	}
+	
+    $('#jq-validation-form').bootstrapValidator({
+        message: 'This value is not valid',
+        fields: {
+        	idSp: {
+                validators: {
+                    notEmpty: {
+                        message: '请选择所属泳馆'
+                    }
+                }
+            },
+            name: {
+                validators: {
+                    notEmpty: {
+                        message: '请填写联系人名称'
+                    }
+                }
+            },
+            landlinePhone: {
+                validators: {
+                    notEmpty: {
+                        message: '请填写联系人电话'
+                    },
+                    regexp: {
+                        regexp: /^0\d{2,3}-?\d{7,8}$/,
+                        message: '电话格式有误'
+                    }
+                }
+            },
+            phone: {
+                validators: {
+                    notEmpty: {
+                        message: '请填写联系人手机'
+                    },
+                    regexp: {
+                        regexp: /^1\d{10}$/,
+                        message: '手机格式有误'
+                    }
+                }
+            },
+            email: {
+                validators: {
+                    notEmpty: {
+                        message: '请填写联系人邮箱'
+                    },
+                    regexp: {
+                        regexp: /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/,
+                        message: '邮箱格式有误'
+                    }
+                }
+            }
+        }
+    })
+    /* .find('button[data-toggle]')
+    .on('click', function () {
+        var $target = $($(this).attr('data-toggle'));
+        $target.toggle();
+        if (!$target.is(':visible')) {
+            $('#jq-validation-form').data('bootstrapValidator').disableSubmitButtons(false);
+        }
+    }) */.on('success.form.bv', function(e) {
+        // Prevent form submission
+        e.preventDefault();
+        // Get the form instance
+        var $form = $(e.target);
+        // reqUrl 处理
+        var req_url = "/v3/swim/contact/persons";
+        var v_method = "POST";
+        if(v_pageType == "edit"){
+        	v_method = "PUT";
+        }
+        $.mAjax({
+			url: req_url,
+			method: v_method,
+			param: $form.serializeObject()
+		}, function(json) {
+            if(json.success == 'T'){
+                $.mAlert({"message":"新增成功."});
+                location.href="/v3/swim/contact/persons/list";	
+            }else{
+				$.mAlert({ message: json.message || json.sub_message });
+            }
+		});
+    });
+    
+    // 【取消】button 注册事件
+    $("#cancel_but").click(function(){
+        location.href="/v3/swim/contact/persons/list";
+    });
+
+    // 下拉列表【所属泳馆】项改变事件
+    $("#idSp").change(function(){
+		$("#idCompany").val($(this).find("option:selected").attr("idCompany"));
+    });
+});
+</script>
+</@ui.js>
+</@ui.layout>

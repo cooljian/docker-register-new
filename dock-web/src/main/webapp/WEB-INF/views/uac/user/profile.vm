@@ -8,7 +8,7 @@
     <div class="profile-container">
       <div class="profile-header row">
           <div class="col-lg-2 col-md-4 col-sm-12 text-center">
-              <img src="/assets/img/avatars/avatar.png" alt="" class="header-avatar" />
+              <img src="${jsRoot}/assets/img/avatars/avatar.png" alt="" class="header-avatar" />
           </div>
           <div class="col-lg-5 col-md-8 col-sm-12 profile-info">
               <div class="header-fullname">谢丽丽</div>

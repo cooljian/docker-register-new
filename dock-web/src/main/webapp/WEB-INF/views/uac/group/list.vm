@@ -86,7 +86,7 @@
 <#include "/inc/hdbars/button.vm">
 <#include "/inc/hdbars/smile.vm">
 <!-- /Handlebars -->
-<script src="/assets/js/fuelux/treeview/treeview-custom.min.js"></script>
+<script src="${jsRoot}/assets/js/fuelux/treeview/treeview-custom.min.js"></script>
 <script type="text/javascript">
 $(function () {
 	$("#scroll-group").slimScroll({height: 427, alwaysVisible: true});

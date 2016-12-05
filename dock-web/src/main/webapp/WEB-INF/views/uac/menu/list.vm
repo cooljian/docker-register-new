@@ -58,7 +58,7 @@
                  </thead>
                </table>
           </div>
-          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-horizontal">
+          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <div class="panel">
               <div class="panel-body p20">
                 <div id="scroll-menu">
@@ -86,7 +86,7 @@
 
 <@ui.js>
 <#include "/inc/hdbars/button.vm">
-<script src="/assets/js/fuelux/treeview/treeview-custom.min.js"></script>
+<script src="${jsRoot}/assets/js/fuelux/treeview/treeview-custom.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
 	$("#scroll-menu").slimScroll({height: 427, alwaysVisible: true});

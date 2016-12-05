@@ -33,7 +33,6 @@ ${js_}
 	<#include "/inc/navbar.vm">
 	<#include "/inc/sidebar.vm">
 
-
 	<div id="content-wrapper">
 		${bread_crumbs}
 		<#nested/>

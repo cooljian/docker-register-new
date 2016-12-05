@@ -32,7 +32,7 @@ public class ExcelUtils
     		//throw Exception;
     	}
 		String codedFileName = null;
-//		response.setContentType("application/vnd.ms-excel");
+//		response.setContentType("application/vnd.ms-excelutil");
 		codedFileName = java.net.URLEncoder.encode(name, "UTF-8");
 //		response.setHeader("content-disposition", "attachment;filename=" + codedFileName + ".xls");//告诉浏览器已下载的形式打开文件
 

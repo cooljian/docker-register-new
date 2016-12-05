@@ -6,7 +6,7 @@
                 <div class="navbar-header pull-left">
                     <a href="#" class="navbar-brand">
                         <small>
-                            <img src="/assets/img/logo.png" alt="OAuth 2.0 统一认证平台" />
+                            <img src="${jsRoot}/assets/img/logo.png" alt="OAuth 2.0 统一认证平台" />
                         </small>
                     </a>
                 </div>
@@ -89,7 +89,7 @@
                                 <ul class="pull-right dropdown-menu dropdown-arrow dropdown-messages">
                                     <li>
                                         <a href="#">
-                                            <img src="/assets/img/avatars/divyia.jpg" class="message-avatar" alt="Divyia Austin">
+                                            <img src="${jsRoot}/assets/img/avatars/divyia.jpg" class="message-avatar" alt="Divyia Austin">
                                             <div class="message">
                                                 <span class="message-sender">张小灵</span>
                                                 <span class="message-time">2分钟之前</span>
@@ -100,7 +100,7 @@
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <img src="/assets/img/avatars/bing.png" class="message-avatar" alt="Microsoft Bing">
+                                            <img src="${jsRoot}/assets/img/avatars/bing.png" class="message-avatar" alt="Microsoft Bing">
                                             <div class="message">
                                                 <span class="message-sender">系统邮件</span>
                                                 <span class="message-time">昨天</span>
@@ -182,7 +182,7 @@
                             <li>
                                 <a class="login-area dropdown-toggle" data-toggle="dropdown">
                                     <div class="avatar" title="会员中心">
-                                        <img src="/assets/img/avatars/avatar.png">
+                                        <img src="${jsRoot}/assets/img/avatars/avatar.png">
                                     </div>
                                     <section>
                                         <h2><span class="profile"><span>Hi, Admin</span></span></h2>
@@ -195,7 +195,7 @@
                                     <!--Avatar Area-->
                                     <li>
                                         <div class="avatar-area">
-                                            <img src="/assets/img/avatars/avatar.png" class="avatar">
+                                            <img src="${jsRoot}/assets/img/avatars/avatar.png" class="avatar">
                                             <span class="caption">Change Photo</span>
                                         </div>
                                     </li>
@@ -207,18 +207,18 @@
                                     <!--Theme Selector Area-->
                                     <li class="theme-area">
                                         <ul class="colorpicker" id="skin-changer">
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#5DB2FF;" rel="/assets/css/skins/blue.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#2dc3e8;" rel="/assets/css/skins/azure.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#03B3B2;" rel="/assets/css/skins/teal.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#53a93f;" rel="/assets/css/skins/green.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#FF8F32;" rel="/assets/css/skins/orange.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#cc324b;" rel="/assets/css/skins/pink.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#AC193D;" rel="/assets/css/skins/darkred.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#8C0095;" rel="/assets/css/skins/purple.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#0072C6;" rel="/assets/css/skins/darkblue.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#585858;" rel="/assets/css/skins/gray.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#474544;" rel="/assets/css/skins/black.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#001940;" rel="/assets/css/skins/deepblue.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#5DB2FF;" rel="${jsRoot}/assets/css/skins/blue.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#2dc3e8;" rel="${jsRoot}/assets/css/skins/azure.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#03B3B2;" rel="${jsRoot}/assets/css/skins/teal.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#53a93f;" rel="${jsRoot}/assets/css/skins/green.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#FF8F32;" rel="${jsRoot}/assets/css/skins/orange.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#cc324b;" rel="${jsRoot}/assets/css/skins/pink.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#AC193D;" rel="${jsRoot}/assets/css/skins/darkred.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#8C0095;" rel="${jsRoot}/assets/css/skins/purple.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#0072C6;" rel="${jsRoot}/assets/css/skins/darkblue.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#585858;" rel="${jsRoot}/assets/css/skins/gray.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#474544;" rel="${jsRoot}/assets/css/skins/black.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#001940;" rel="${jsRoot}/assets/css/skins/deepblue.min.css"></a></li>
                                         </ul>
                                     </li>
                                     <!--/Theme Selector Area-->

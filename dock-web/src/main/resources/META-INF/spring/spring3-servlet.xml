@@ -6,7 +6,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
     http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
-
     <context:component-scan base-package="com.dock.controller"/>
 
     <!-- ViewResolver -->
@@ -16,29 +15,6 @@
         <!--<property name="suffix" value=".vm"/>-->
     <!--</bean>-->
 
-    <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-        <property name="resourceLoaderPath" value="/WEB-INF/views/"/>
-        <property name="velocityProperties">
-            <props>
-                <prop key="input.encoding">UTF-8</prop>
-                <prop key="output.encoding">UTF-8</prop>
-                <prop key="contentType">text/html;charset=UTF-8</prop>
-            </props>
-        </property>
-    </bean>
-    <bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
-        <property name="cache" value="false"/>
-        <property name="suffix" value=".html"/>
-        <property name="exposeSpringMacroHelpers" value="true"/>
-        <property name="dateToolAttribute" value="dateTool"/>
-        <property name="numberToolAttribute" value="numberTool"/>
-        <property name="requestContextAttribute" value="req"/>
-        <property name="exposeRequestAttributes" value="true"/>
-        <property name="exposePathVariables" value="true"/>
-        <property name="toolboxConfigLocation" value="/WEB-INF/tool-box.xml"/>
-        <property name="viewClass" value="org.springframework.web.servlet.view.velocity.VelocityToolboxView"/>
-        <property name="contentType" value="text/html;charset=UTF-8"/>
-    </bean>
     <!-- exception resolver added by bin.yin 2015.09.06 -->
     <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="defaultErrorView" value="exception"/>
@@ -65,9 +41,11 @@
 
 
     <!-- 对静态资源文件的访问 js css等静态资源 不支持访问WEB-INF目录 -->
-    <mvc:default-servlet-handler />
+    <!--<mvc:default-servlet-handler />-->
     <!-- 对静态资源文件的访问 支持访问WEB-INF目录 -->
-     <mvc:resources mapping="/assets/**" location="/assets/**"/>
+     <!--<mvc:resources mapping="/assets/**" location="/assets/"/>-->
+    <mvc:annotation-driven />
+    <mvc:resources mapping="/assets/**" location="/assets/" />
 
     <!-- RESTful服务中很重要的一个特性即是同一资源,多种表述我们使用ContentNegotiatingViewResolver就可以做到。这个视图解析器允许你用同样的内容数据来呈现不同的view-->
     <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
@@ -119,4 +97,12 @@
     <!-- JSR-303 -->
     <mvc:annotation-driven/>
 
+    <!-- locale related 扩展配置：这个配置是设置区域，根据不同的区域显示不同的web内容-->
+    <!--<bean id="localeResolver"-->
+          <!--class="org.springframework.web.servlet.i18n.CookieLocaleResolver">-->
+        <!--<property name="cookieName" value="_clientlocale" />-->
+        <!--<property name="defaultLocale" value="zh_CN" />-->
+        <!--<property name="cookieMaxAge" value="2147483647" />-->
+    <!--</bean>-->
+    <import resource="spring-view.xml"/>
 </beans>

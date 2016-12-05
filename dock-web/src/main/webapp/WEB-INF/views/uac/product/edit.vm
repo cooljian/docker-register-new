@@ -1,8 +1,11 @@
 <@ui.init ["系统管理", "产品管理", "新增产品"], "products_list"/>
+<@ui.css>
+<link href="${jsRoot}/assets/css/datetime/bootstrap-datepicker.min.css" rel="stylesheet" />
+</@ui.css>
 
 <@ui.layout>
 <div class="row mt25">
-  <div class="col-lg-6 col-sm-12 col-xs-12">
+  <div class="col-lg-12 col-sm-12 col-xs-12">
     <div class="panel">
       <div class="panel-heading">
       	<span class="panel-title">新增产品</span>
@@ -10,23 +13,26 @@
       <div class="panel-body">
       	<form class="form-horizontal" id="jq-validation-form" novalidate="novalidate">
       		<div class="form-group">
-      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">产品名称</label>
-      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 control-label">产品名称</label>
+      			<div class="col-lg-3 col-sm-6">
       				<input type="text" class="form-control" id="product_name" name="name" placeholder="产品名称">
       			</div>
       		</div>
       
       		<div class="form-group">
       			<label for="jq-validation-password" class="col-sm-3 control-label">产品代号</label>
-      			<div class="col-sm-3">
+      			<div class="col-lg-3 col-sm-6">
       				<input type="password" class="form-control" id="product_code" name="code" placeholder="产品代号">
       			</div>
       		</div>
       
       		<div class="form-group">
       			<label for="jq-validation-required" class="col-sm-3 control-label">上线日期</label>
-      			<div class="col-sm-3">
-      				<input type="text" class="form-control" id="product_online_time" name="onlineTime" placeholder="上线日期">
+      			<div class="col-lg-3 col-sm-6">
+      				<div class="input-group date" id="bs-online-time">
+      					<input class="form-control" id="online_time" name="onlineTime" type="text" data-date-format="yyyy-mm-dd" placeholder="上线日期">
+      					<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+      				</div>
       			</div>
       		</div>
       
@@ -45,41 +51,14 @@
 </div>
 
 <@ui.js>
-<script src="/assets/js/validation/bootstrapvalidator.js"></script>
+<script src="${jsRoot}/assets/js/datetime/bootstrap-datepicker.js"></script>
+<script src="${jsRoot}/assets/js/validation/bootstrap-validator.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
-
+	$('#bs-online-time').datepicker();
+	
     $('#jq-validation-form').bootstrapValidator({
         message: 'This value is not valid',
-        feedbackIcons: {
-            valid: 'fa fa-check',
-            invalid: 'fa fa-close',
-            validating: 'fa fa-refresh'
-        },
-        submitHandler: function (validator, form, submitButton) {
-        	$.post(form.attr('action'), form.serialize(), function(result) {
-                // The result is a JSON formatted by your back-end
-                // I assume the format is as following:
-                //  {
-                //      valid: true,          // false if the account is not found
-                //      username: 'Username', // null if the account is not found
-                //  }
-                if (result.valid == true || result.valid == 'true') {
-                    // You can reload the current location
-                    window.location.reload();
-
-                    // Or use Javascript to update your page, such as showing the account name
-                    // $('#welcome').html('Hello ' + result.username);
-                } else {
-                    // The account is not found
-                    // Show the errors
-                    $('#errors').html('The account is not found').removeClass('hide');
-
-                    // Enable the submit buttons
-                    $('#loginForm').bootstrapValidator('disableSubmitButtons', false);
-                }
-            }, 'json');
-        },
         fields: {
             name: {
                 validators: {
@@ -103,15 +82,7 @@ $(document).ready(function () {
                 }
             }
         }
-    })
-    /* .find('button[data-toggle]')
-    .on('click', function () {
-        var $target = $($(this).attr('data-toggle'));
-        $target.toggle();
-        if (!$target.is(':visible')) {
-            $('#jq-validation-form').data('bootstrapValidator').disableSubmitButtons(false);
-        }
-    }) */.on('success.form.bv', function(e) {//点击提交之后
+    }).on('success.form.bv', function(e) {//点击提交之后
         // Prevent form submission
         e.preventDefault();
 
@@ -124,10 +95,10 @@ $(document).ready(function () {
         console.log($form.serialize());
         console.log($form.serializeArray());
         console.log($form.serializeObject());
-        console.log(JSON.stringify($form.serializeObject()));
         // Use Ajax to submit form data 提交至form标签中的action，result自定义
         $.post($form.attr('action'), $form.serialize(), function(result) {
         	//do something...
+        	$.mSuccess("操作成功");
         });
     });
 });

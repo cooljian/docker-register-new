@@ -1,65 +1,187 @@
-<@ui.blank>
+<@ui.init ["系统管理", "用户管理", "新增用户"], "users_list"/>
 
-<div class="row">
-    <div class="col-lg-12 col-sm-12 col-xs-12">
-        <form class="form-horizontal" id="jq-validation-form">
-            <div class="form-group">
-                <label for="jq-validation-email" class="col-sm-3 control-label">姓名</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="姓名">
-                </div>
+<@ui.layout>
+<div class="row mt25">
+    <div class="col-lg-6 col-sm-12 col-xs-12">
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title" id="sp_title">新增用户</span>
+                <input type="hidden" value="${pageType}" id="pageType"/>
+                <input type="hidden" value="${req_id}" id="req_id"/>
+                <input type="hidden" value="${test_id}" id="test_id"/>
             </div>
+            <div class="panel-body">
+                <form class="form-horizontal" id="jq-validation-form" novalidate="novalidate" action="/v3/swim/service/types/new">
+                    <div class="form-group">
+                        <label for="jq-validation-email" class="col-sm-3 control-label">姓名</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="姓名">
+                        </div>
+                    </div>
 
-            <div class="form-group">
-                <label for="jq-validation-required" class="col-sm-3 control-label">性别</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="gender" name="gender" placeholder="性别">
-                </div>
+                    <div class="form-group">
+                        <label for="jq-validation-required" class="col-sm-3 control-label">性别</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="gender" name="gender" placeholder="性别">
+                        </div>
+                    </div>
+
+                    <div class="form-group simple">
+                        <label for="jq-validation-simple-error" class="col-sm-3 control-label">出生日期</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="birthday" name="birthday" placeholder="出生日期">
+                        </div>
+                    </div>
+
+                    <div class="form-group simple">
+                        <label for="jq-validation-simple-error" class="col-sm-3 control-label">证件类型</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="cardType" name="cardType" placeholder="证件类型">
+                        </div>
+                    </div>
+
+                    <div class="form-group simple">
+                        <label for="jq-validation-simple-error" class="col-sm-3 control-label">证件号</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="cardNo" name="cardNo" placeholder="证件号">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jq-validation-required" class="col-sm-3 control-label">邮箱</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="email" name="email" placeholder="邮箱">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jq-validation-required" class="col-sm-3 control-label">地址</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="address" name="address" placeholder="地址">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jq-validation-url" class="col-sm-3 control-label">联系方式</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="联系方式">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jq-validation-text" class="col-sm-3 control-label">备注</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" name="jq-validation-text" id="jq-validation-text" placeholder="备注"></textarea>
+                        </div>
+                    </div>
+                    <hr class="panel-wide">
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <button type="submit" id="submit_but" class="btn btn-info"><i class="fa fa-check"></i> 保存 </button>
+                            <button type="button" name="cancel_but" id="cancel_but" class="btn btn-default"><i class="fa fa-undo"></i> 取消 </button>
+                        </div>
+                    </div>
+                </form>
             </div>
-
-            <div class="form-group">
-                <label for="jq-validation-required" class="col-sm-3 control-label">邮箱</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="email" name="email" placeholder="邮箱">
-                </div>
-            </div>
-
-            <div class="form-group simple">
-                <label for="jq-validation-simple-error" class="col-sm-3 control-label">出生日期</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="birthday" name="birthday" placeholder="出生日期">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="jq-validation-url" class="col-sm-3 control-label">联系方式</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="phone" name="phone" placeholder="联系方式">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="jq-validation-phone" class="col-sm-3 control-label">生效时间</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="beginTime" name="beginTime" placeholder="生效时间">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="jq-validation-phone" class="col-sm-3 control-label">生效时间</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="endTime" name="endTime" placeholder="失效时间">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="jq-validation-text" class="col-sm-3 control-label">备注</label>
-                <div class="col-sm-9">
-                    <textarea class="form-control" name="note" id="jq-validation-text" placeholder="备注"></textarea>
-                </div>
-            </div>
-
-        </form>
+        </div>
     </div>
 </div>
-</@ui.blank>
+
+<@ui.js>
+<script src="${jsRoot}/assets/js/validation/bootstrapvalidator.js"></script>
+<script type="text/javascript">
+
+    // 初始化表单数据
+    function initData(){
+        var v_data = getDataById($("#req_id").val());
+        if($.isEmpty(v_data)){
+            return;
+        }
+        $("#id").val(v_data.id);
+        $("#name").val(v_data.name);
+    }
+
+//    $(document).ready(function () {
+//        var v_pageType = $("#pageType").val();
+//        // 根据pageType特殊处理相关表单
+//        if(v_pageType == "view"){
+//            $("#sp_title").text("查看服务");
+//            $("input[type='text']").attr("readonly",true);
+//            $("#submit_but").remove();
+//            $("#cancel_but").text("返回");
+//            // 加载表单数据
+//            initData();
+//        }else if(v_pageType == "edit"){
+//            $("#sp_title").text("编辑服务");
+//            $("#id").attr("readonly",true);
+//            // 加载表单数据
+//            initData();
+//        }
+
+        $('#jq-validation-form').bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'fa fa-check',
+                invalid: 'fa fa-close',
+                validating: 'fa fa-refresh'
+            },
+            fields: {
+                name: {
+                    validators: {
+                        notEmpty: {
+                            message: '请填写服务名称'
+                        },
+                        stringLength: {
+                            min: 2,
+                            max: 20,
+                            message: '服务名称长度必须在2到20之间'
+                        },
+                        different: {
+                            field: 'id',
+                            message: '不能和服务编码相同'
+                        }
+                    }
+                }
+            }
+        })
+        /* .find('button[data-toggle]')
+        .on('click', function () {
+            var $target = $($(this).attr('data-toggle'));
+        $target.toggle();
+        if (!$target.is(':visible')) {
+            $('#jq-validation-form').data('bootstrapValidator').disableSubmitButtons(false);
+        }
+    }) */.on('success.form.bv', function(e) {
+            // Prevent form submission
+            e.preventDefault();
+            // Get the form instance
+            var $form = $(e.target);
+            // reqUrl 处理
+            var req_url = "/v3/users";
+            var v_method = "POST";
+//            if(v_pageType == "edit"){
+//                v_method = "PUT";
+//            }
+            $.mAjax({
+                url: req_url,
+                method: v_method,
+                param: JSON.stringify($form.serializeObject())
+            }, function(json) {
+                if(json.success == 'T'){
+                    $.mAlert({"message":"新增成功."});
+                    location.href="/v3/users/list";
+                }else{
+                    $.mAlert({ message: json.message || json.sub_message });
+                }
+            });
+        });
+
+        // 【取消】button 注册事件
+        $("#cancel_but").click(function(){
+            location.href="/v3/users/list";
+        });
+    });
+</script>
+</@ui.js>
+</@ui.layout>

@@ -1,6 +1,6 @@
 <@ui.init ["主页"], "index"/>
 <@ui.css>
-<link href="/assets/css/morris.css" rel="stylesheet" />
+<link href="${jsRoot}/assets/css/morris.css" rel="stylesheet" />
 </@ui.css>
 
 <@ui.layout>
@@ -182,21 +182,21 @@
 
 <@ui.js>
 <!--Sparkline Charts Needed Scripts-->
-<script src="/assets/js/charts/sparkline/jquery.sparkline.js"></script>
+<script src="${jsRoot}/assets/js/charts/sparkline/jquery.sparkline.js"></script>
 <!--Easy Pie Charts Needed Scripts-->
-<script src="/assets/js/charts/easypiechart/jquery.easypiechart.min.js"></script>
+<script src="${jsRoot}/assets/js/charts/easypiechart/jquery.easypiechart.min.js"></script>
 
 <!--Flot Charts Needed Scripts-->
-<script src="/assets/js/charts/flot/jquery.flot.js"></script>
-<script src="/assets/js/charts/flot/jquery.flot.resize.js"></script>
-<script src="/assets/js/charts/flot/jquery.flot.pie.js"></script>
-<script src="/assets/js/charts/flot/jquery.flot.tooltip.js"></script>
-<script src="/assets/js/charts/flot/jquery.flot.orderbars.js"></script>
+<script src="${jsRoot}/assets/js/charts/flot/jquery.flot.js"></script>
+<script src="${jsRoot}/assets/js/charts/flot/jquery.flot.resize.js"></script>
+<script src="${jsRoot}/assets/js/charts/flot/jquery.flot.pie.js"></script>
+<script src="${jsRoot}/assets/js/charts/flot/jquery.flot.tooltip.js"></script>
+<script src="${jsRoot}/assets/js/charts/flot/jquery.flot.orderbars.js"></script>
 
-<script src="/assets/js/charts/morris/raphael.min.js"></script>
-<script src="/assets/js/charts/morris/morris.min.js"></script>
+<script src="${jsRoot}/assets/js/charts/morris/raphael.min.js"></script>
+<script src="${jsRoot}/assets/js/charts/morris/morris.min.js"></script>
 
-<script src="/assets/pixel/js/pixel-chart.js"></script>
+<script src="${jsRoot}/assets/pixel/js/pixel-chart.js"></script>
 <script>
 init.push(function () {
 	var uploads_data = [

@@ -1,0 +1,62 @@
+<@ui.body>
+<div class="register-container animated fadeInDown">
+    <div class="registerbox bg-white">
+        <div class="widget-header bordered-bottom bordered-blue">
+            <span class="widget-caption">用户注册</span>
+        </div>
+        <!-- <div class="registerbox-title">用户注册</div> -->
+
+        <div class="registerbox-caption ft12 pb10">请填写您的个人资料</div>
+        <div class="form-group registerbox-textbox">
+            <span class="input-icon">
+                <input type="text" class="form-control" placeholder="用户名">
+                <i class="fa fa-user"></i>
+            </span>
+        </div>
+        <div class="form-group registerbox-textbox">
+            <span class="input-icon">
+                <input type="text" class="form-control" placeholder="密码">
+                <i class="fa fa-lock"></i>
+            </span>
+        </div>
+        <div class="form-group registerbox-textbox">
+            <span class="input-icon">
+                <input type="text" class="form-control" placeholder="确认密码">
+                <i class="fa fa-key"></i>
+            </span>
+        </div>
+        <hr class="wide" />
+        <div class="form-group registerbox-textbox">
+            <span class="input-icon">
+                <input type="text" class="form-control" placeholder="手机号码">
+                <i class="fa fa-mobile"></i>
+            </span>
+        </div>
+        <div class="input-group registerbox-textbox">
+            <input type="text" class="form-control" placeholder="验证码">
+            <span class="input-group-btn">
+                <button class="btn btn-darkorange bg-blue" type="button">点击发送验证码</button>
+            </span>
+        </div>
+        <div class="form-group registerbox-textbox">
+            <span class="input-icon">
+                <input class="form-control date-picker" type="text" data-date-format="yyyy-mm-dd" placeholder="出生日期">
+                <i class="fa fa-calendar"></i>
+            </span>
+        </div>
+        <div class="registerbox-textbox no-padding-bottom">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" class="colored-primary" checked="checked">
+                    <span class="text darkgray">阅读并接受 <a class="themeprimary"> 天健用户协议 </a></span>
+                </label>
+            </div>
+        </div>
+        <div class="registerbox-submit">
+            <input type="button" class="btn btn-azure pull-right" value=" 返 回 ">
+            <input type="button" class="btn btn-primary pull-right mr20" value=" 注 册 ">
+        </div>
+    </div>
+    <!-- <div class="logobox"></div> -->
+</div>
+</@ui.body>

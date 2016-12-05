@@ -1,5 +1,5 @@
 <script id="button-hdbars" type="text/x-handlebars-template">
 {{#each elements}}
-<button type="button" class="btn btn-{{this.type}} btn-xs{{#fi this.name}} {{this.name}}{{/fi}}" id="{{this.id}}"{{#fi this.name}} name="{{this.name}}"{{/fi}}{{#fi this.text}} title="{{this.text}}"{{else}}{{#fi this.title}} title="{{this.title}}"{{/fi}}{{/fi}}>{{#fi this.icon}}<i class="fa fa-{{this.icon}}"></i>{{/fi}}{{#fi this.text}}{{this.text}}{{/fi}}</button>
+<button type="button" class="btn btn-{{this.type}} btn-xs{{#fi this.name}} {{this.name}}{{/fi}}" id="{{this.id}}"{{#fi this.name}} name="{{this.name}}"{{/fi}}{{#fi this.text}} title="{{this.text}}"{{else}}{{#fi this.title}} title="{{this.title}}"{{/fi}}{{/fi}}{{#fi this.fn}} onclick="{{this.fn}}"{{/fi}}>{{#fi this.icon}}<i class="fa fa-{{this.icon}}"></i>{{/fi}}{{#fi this.text}} {{this.text}}{{/fi}}</button>
 {{/each}}
 </script>

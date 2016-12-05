@@ -1,25 +1,24 @@
 <@ui.init ["泳馆管理", "服务类型管理"], "swim_service_type"/>
 
-
 <@ui.layout>
 <div class="row">
   <div class="col-lg-12 col-sm-12 col-xs-12">
     <div class="panel search shadow">
       <div class="panel-body bordered-left">
-        <form method="post" role="form" action="/customer/list.htm">
+        <form method="post" role="form" action="/v3/swim/serviceTypes/list.vm">
           <div class=" row">
            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-horizontal">
              <div class="form-group margin-bottom-10">
-               <label for="username" class="col-md-3 control-label no-padding-right text-nowrap">产品名称：</label>
+               <label for="swimTypeName" class="col-md-3 control-label no-padding-right text-nowrap">服务名称：</label>
                <div class="col-md-9">
-                   <input type="text" value ="${map.username}" name="username" class="form-control" placeholder="请输入账号" onblur="filterTrim(this);"/>
+                   <input type="text" value ="${name}" id="name" name="name" class="form-control" placeholder="请输入类型名称" />
                </div>
              </div>
            </div> 
            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-horizontal">
              <div class="text-align-left">
-                 <button type="submit" class="btn btn-info" name="submit"><i class="fa fa-search"></i> 查询</button>
-                 <button type="button" class="btn btn-default" name="reset"><i class="fa fa-undo"></i> 重置</button>
+                 <button type="button" class="btn btn-info" id="query_but"><i class="fa fa-search"></i> 查询</button>
+                 <button type="button" class="btn btn-default"  id="reset_but" name="reset"><i class="fa fa-undo"></i> 重置</button>
              </div>
            </div>
           </div>
@@ -34,21 +33,21 @@
     <div class="panel">
       <div class="panel-body">
      	<div class="row">
-		  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-horizontal">
+		  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="buttons-preview">
-				<a class="btn btn-danger" href="/v3/swimType/new"><i class="fa fa-plus"></i> 新增 </a>
+				<a class="btn btn-danger" href="/v3/swim/serviceTypes/new"><i class="fa fa-plus"></i> 新增 </a>
 			</div>
 		  </div>
 	    </div>
 	    <div class="row">
-	      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-horizontal">
-            <table width="100%" class="table table-striped table-bordered table-hover" id="productlist">
+	      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <table width="100%" class="table table-striped table-bordered table-hover" id="swimServiceTypeList">
               <thead class="bordered-orange">
                 <tr>
-                  <th> 状态 </th>
-                  <th> 服务类型编码 </th>
-                  <th> 服务类型名称 </th>
+                  <th> 服务编码 </th>
+                  <th> 服务名称 </th>
                   <th> 创建日期 </th>
+                  <th> 状态 </th>
                   <th> 操作 </th>
                 </tr>
               </thead>
@@ -62,38 +61,80 @@
 
 <@ui.js>
 <#include "/inc/hdbars/button.vm">
-<#include "/inc/hdbars/smile.vm">
+<#include "/inc/hdbars/status.vm">
 <script type="text/javascript">
+
 $(document).ready(function () {
-	//$("#aa").slimScroll({height: 488, alwaysVisible: true, allowPageScroll: true});
-	
-	$('#productlist').pagination({
+	var tabl_swimServiceType = $('#swimServiceTypeList').pagination({
 		info: true,
 		paginate: true,
-		url: '/v3/products/search',
+		paremeters: function(){
+			return { name: $("#name").val() };
+		},
+		url: '/v3/swim/service/types/search',
 		columns: [
-		    { "data": null, "sClass": "text-center" },
-		    { "data": "code" },
+		    { "data": "id" },
 		    { "data": "name" },
-		    { "data": "onlineTime" },
+		    { "data": "createdTime" },
+		    { "data": null, "sClass": "text-center" },
 		    { "data": null, "sClass": "text-center"}
 		],
 		columnDefs: [
 		    {
-		    	width: 100,
-		    	targets: 0,
+		    	targets: 2,
 		    	render: function (data, type, row, meta) {
-		    		return $.handlebars($('#smile-hdbars'), data);
-		    	}
-		    },
-		    {
-		    	targets: -2,
-		    	render: function (data, type, row, meta) {
-		    		return $.mDate(data);
+		    		return $.mTime(data);
 		    	}
 		    }
 		],
-		last: true
+		status:true,
+		last: true,
+		destory: true
+	});
+	
+	// 【查看】按钮注册事件
+	$('#swimServiceTypeList tbody').on('click', '.btn-view', function() {
+		var v_id = $(this).attr("id");
+		if($.isEmpty(v_id)){
+            $.mAlert("Id有误.");
+			return;
+		}
+		location.href="/v3/swim/serviceTypes/view/"+v_id;
+	});
+	
+	// 【修改】按钮注册事件
+	$('#swimServiceTypeList tbody').on('click', '.btn-edit', function() {
+		var v_id = $(this).attr("id");
+		if($.isEmpty(v_id)){
+            $.mAlert({"message":"Id有误."});
+			return;
+		}
+		location.href="/v3/swim/serviceTypes/edit/"+v_id;
+	});
+	
+	// 【删除】按钮注册事件
+	$('#swimServiceTypeList tbody').on('click', '.btn-del', function() {
+		var v_id = $(this).attr("id");
+		$.mConfirm("您确定要删除这条记录?", function(result) {
+			$.mAjax({
+				url: "/v3/swim/service/types/"+v_id,
+				method: "DELETE"
+			}, function(json) {
+                console.log(json);
+                $.mSuccess("删除成功.");
+                tabl_swimServiceType.fnDraw();
+			});
+		});
+	});
+
+	// 【重置】按钮注册事件
+	$("#reset_but").click(function(){
+		$("input[name='name']").val("");
+	});
+	
+	// 【查询】按钮注册事件
+	$("#query_but").click(function(){
+		tabl_swimServiceType.fnDraw();
 	});
 });
 </script>

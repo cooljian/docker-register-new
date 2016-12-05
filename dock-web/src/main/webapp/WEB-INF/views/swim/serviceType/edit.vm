@@ -1,41 +1,36 @@
-<@ui.init ["泳馆管理", "服务类型管理", "新增服务类型"], "swim_service_type"/>
+<@ui.init ["泳馆管理", "服务服务管理", "服务服务维护"], "swim_service_type"/>
 
 <@ui.layout>
 <div class="row mt25">
   <div class="col-lg-6 col-sm-12 col-xs-12">
     <div class="panel">
       <div class="panel-heading">
-      	<span class="panel-title">新增产品</span>
+      	<span class="panel-title" id="sp_title">新增服务</span>
+      	<input type="hidden" value="${pageType}" id="pageType"/>
+      	<input type="hidden" value="${req_id}" id="req_id"/>
+      	<input type="hidden" value="${test_id}" id="test_id"/>
       </div>
       <div class="panel-body">
-      	<form class="form-horizontal" id="jq-validation-form" novalidate="novalidate">
+      	<form class="form-horizontal" id="jq-validation-form" novalidate="novalidate" action="/v3/swim/service/types/new">
       		<div class="form-group">
-      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">产品名称</label>
+      			<label for="jq-validation-password" class="col-sm-3 control-label">服务编码</label>
       			<div class="col-lg-9 col-sm-9 col-xs-9">
-      				<input type="text" class="form-control" id="product_name" name="name" placeholder="产品名称">
+      				<input type="text" class="form-control" id="id" name="id" placeholder="服务编码">
       			</div>
       		</div>
-      
+      		
       		<div class="form-group">
-      			<label for="jq-validation-password" class="col-sm-3 control-label">产品代号</label>
-      			<div class="col-sm-3">
-      				<input type="password" class="form-control" id="product_code" name="code" placeholder="产品代号">
+      			<label for="jq-validation-email" class="col-lg-3 col-sm-3 col-xs-3 control-label">服务名称</label>
+      			<div class="col-lg-9 col-sm-9 col-xs-9">
+      				<input type="text" class="form-control" id="name" name="name" placeholder="服务名称">
       			</div>
       		</div>
-      
-      		<div class="form-group">
-      			<label for="jq-validation-required" class="col-sm-3 control-label">上线日期</label>
-      			<div class="col-sm-3">
-      				<input type="text" class="form-control" id="product_online_time" name="onlineTime" placeholder="上线日期">
-      			</div>
-      		</div>
-      
       		<hr class="panel-wide">
       
       		<div class="form-group">
       			<div class="col-sm-offset-3 col-sm-9">
-      				<button type="submit" class="btn btn-info"><i class="fa fa-check"></i> 保存 </button>
-      				<button type="button" class="btn btn-default"><i class="fa fa-undo"></i> 取消 </button>
+      				<button type="submit" id="submit_but" class="btn btn-info"><i class="fa fa-check"></i> 保存 </button>
+      				<button type="button" name="cancel_but" id="cancel_but" class="btn btn-default"><i class="fa fa-undo"></i> 取消 </button>
       			</div>
       		</div>
       	</form>
@@ -45,60 +40,106 @@
 </div>
 
 <@ui.js>
-<script src="/assets/js/validation/bootstrapvalidator.js"></script>
+<script src="${jsRoot}/assets/js/validation/bootstrap-validator.js"></script>
 <script type="text/javascript">
-$(document).ready(function () {
 
+//检查id是否已存在
+function checkIdIsExist(){
+	var v_id = $("#id").val();
+	if($.isEmpty(v_id)){
+    	$.mAlert({"message":"ID值为空."});
+		return true;
+	}
+	return $.isEmpty(getDataById(v_id));
+}
+
+// 根据Id获得页面数据
+function getDataById(v_id){
+	if($.isEmpty(v_id)){
+		return;
+	}
+	var v_data = null;
+	$.mAjax({
+		url: "/v3/swim/service/types/"+v_id,
+		method: "GET",
+		async: false
+	}, function(json) {
+     console.log(json);
+     if($.isNotEmpty(json.data)){
+    	 v_data = json.data;	
+     }
+	});
+	return v_data;
+}
+
+// 初始化表单数据
+function initData(){
+	var v_data = getDataById($("#req_id").val());
+	if($.isEmpty(v_data)){
+		return;
+	}
+	$("#id").val(v_data.id);
+	$("#name").val(v_data.name);
+}
+
+$(document).ready(function () {
+	var v_pageType = $("#pageType").val();
+	// 根据pageType特殊处理相关表单
+	if(v_pageType == "view"){
+		$("#sp_title").text("查看服务");
+		$("input[type='text']").attr("readonly",true);
+		$("#submit_but").remove();
+		$("#cancel_but").text("返回");
+		// 加载表单数据
+		initData();
+	}else if(v_pageType == "edit"){
+		$("#sp_title").text("编辑服务");
+		$("#id").attr("readonly",true);
+		// 加载表单数据
+		initData();
+	}
+	
     $('#jq-validation-form').bootstrapValidator({
         message: 'This value is not valid',
-        feedbackIcons: {
-            valid: 'fa fa-check',
-            invalid: 'fa fa-close',
-            validating: 'fa fa-refresh'
-        },
-        submitHandler: function (validator, form, submitButton) {
-        	$.post(form.attr('action'), form.serialize(), function(result) {
-                // The result is a JSON formatted by your back-end
-                // I assume the format is as following:
-                //  {
-                //      valid: true,          // false if the account is not found
-                //      username: 'Username', // null if the account is not found
-                //  }
-                if (result.valid == true || result.valid == 'true') {
-                    // You can reload the current location
-                    window.location.reload();
-
-                    // Or use Javascript to update your page, such as showing the account name
-                    // $('#welcome').html('Hello ' + result.username);
-                } else {
-                    // The account is not found
-                    // Show the errors
-                    $('#errors').html('The account is not found').removeClass('hide');
-
-                    // Enable the submit buttons
-                    $('#loginForm').bootstrapValidator('disableSubmitButtons', false);
-                }
-            }, 'json');
-        },
         fields: {
+        	id: {
+                validators: {
+                    notEmpty: {
+                        message: '请填写服务编码'
+                    },
+                    stringLength: {
+                        min: 3,
+                        max: 10,
+                        message: '服务编码长度必须在3到10之间'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_\.]+$/,
+                        message: '请填写数字和字母_.'
+                    },
+                    callback: {  
+                        message: '服务编码已存在.',  
+                        callback: function(value, validator) {
+                           if(v_pageType == "edit"){
+                        	   return true;
+                           }
+                           return checkIdIsExist();
+                        }  
+                    }
+                }
+            },
             name: {
                 validators: {
                     notEmpty: {
-                        message: '请填写产品名称'
-                    }
-                }
-            },
-            code: {
-                validators: {
-                    notEmpty: {
-                        message: '请填写产品代号'
-                    }
-                }
-            },
-            onlineTime: {
-                validators: {
-                    notEmpty: {
-                        message: '请填写上线日期'
+                        message: '请填写服务名称'
+                    },
+                    stringLength: {
+                        min: 2,
+                        max: 20,
+                        message: '服务名称长度必须在2到20之间'
+                    },
+                    different: {
+                        field: 'id',
+                        message: '不能和服务编码相同'
                     }
                 }
             }
@@ -111,24 +152,34 @@ $(document).ready(function () {
         if (!$target.is(':visible')) {
             $('#jq-validation-form').data('bootstrapValidator').disableSubmitButtons(false);
         }
-    }) */.on('success.form.bv', function(e) {//点击提交之后
+    }) */.on('success.form.bv', function(e) {
         // Prevent form submission
         e.preventDefault();
-
         // Get the form instance
         var $form = $(e.target);
-
-        // Get the BootstrapValidator instance
-        var bv = $form.data('bootstrapValidator');
-
-        console.log($form.serialize());
-        console.log($form.serializeArray());
-        console.log($form.serializeObject());
-        console.log(JSON.stringify($form.serializeObject()));
-        // Use Ajax to submit form data 提交至form标签中的action，result自定义
-        $.post($form.attr('action'), $form.serialize(), function(result) {
-        	//do something...
-        });
+        // reqUrl 处理
+        var req_url = "/v3/swim/service/types";
+        var v_method = "POST";
+        if(v_pageType == "edit"){
+        	v_method = "PUT";
+        }
+        $.mAjax({
+			url: req_url,
+			method: v_method,
+			param: $form.serializeObject()
+		}, function(json) {
+            if(json.success == 'T'){
+                $.mAlert({"message":"新增成功."});
+                location.href="/v3/swim/serviceTypes//list";	
+            }else{
+				$.mAlert({ message: json.message || json.sub_message });
+            }
+		});
+    });
+    
+    // 【取消】button 注册事件
+    $("#cancel_but").click(function(){
+        location.href="/v3/swim/serviceTypes/list";
     });
 });
 </script>

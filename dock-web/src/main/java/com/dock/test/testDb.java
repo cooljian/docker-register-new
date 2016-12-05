@@ -199,9 +199,9 @@ public class testDb
 //        String user = "gym";
 //        String password = "L4KjmrxYfQyMFaKB";
         String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://192.168.2.9:3306/tenant?useUnicode=true&characterEncoding=utf-8" ;
-        String user = "root";
-        String password = "dangerous";
+        String url = "jdbc:mysql://xxxx:3306/tenant?useUnicode=true&characterEncoding=utf-8" ;
+        String user = "xxxx";
+        String password = "xxxx";
         Class.forName(driver) ;
         Connection Connection = (Connection) DriverManager.getConnection(url, user, password);
         return Connection;

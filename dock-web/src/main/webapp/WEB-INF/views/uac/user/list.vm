@@ -10,14 +10,15 @@
             <div class="form-group margin-bottom-10">
               <label for="fullname" class="col-md-3 control-label no-padding-right text-nowrap">姓名：</label>
               <div class="col-md-9">
-                <input type="text" value ="${name}" id="name" name="name" class="form-control" placeholder="请输入姓名"/>
+                <input type="text" id="name" name="name" value="${name}" class="form-control" placeholder="请输入姓名"/>
+                <input type="hidden" id="tenantId" name="tenantId" value="34ce10bc982a11e69f5f0242ac110029">
               </div>
             </div>
           </div>
           <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-horizontal">
             <div class="text-align-left">
-              <button type="button" class="btn btn-info" id="search" name="search"><i class="fa fa-search"></i> 查询</button>
-              <button type="button" class="btn btn-default" id="reset" name="reset"><i class="fa fa-undo"></i> 重置</button>
+              <button type="button" class="btn btn-info" id="btn-search" name="search"><i class="fa fa-search"></i> 查询</button>
+              <button type="button" class="btn btn-default" id="btn-reset" name="reset"><i class="fa fa-undo"></i> 重置</button>
             </div>
           </div>
         </div>
@@ -33,12 +34,13 @@
      	<div class="row">
 		  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="buttons-preview">
-				<a id="add-user" class="btn btn-danger" href="#"><i class="fa fa-plus"></i> 新增 </a>
+				<a id="add-user" class="btn btn-danger" href="/v3/users/new"><i class="fa fa-plus"></i> 新增 </a>
 			</div>
 		  </div>
 	    </div>
 	  <div class="row">
 	    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+           <input type="hidden" id="userId" name="userId">
            <table width="100%" class="table table-striped table-bordered table-hover" id="userlist">
              <thead class="bordered-orange">
                <tr>
@@ -46,9 +48,7 @@
                  <th> 姓名 </th>
                  <th> 性别 </th>
                  <th> 联系方式 </th>
-                 <th> 生效时间 </th>
-                 <th> 失效时间 </th>
-                 <th> 注册来源 </th>
+                 <th> 注册时间 </th>
                  <th class="text-center"> 状态 </th>
                  <th class="text-center"> 操作 </th>
                </tr>
@@ -64,7 +64,7 @@
                     <a class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);" aria-expanded="false"><i class="fa fa-angle-down"></i></a>
                     <ul id="tenant-roles" class="dropdown-menu"></ul>
                   </div>
-                  <button class="btn btn-danger btn-sm"><i class="fa fa-plus"></i> 添加授权 </button>
+                  <button class="btn btn-danger btn-sm" id="btn-add-role"><i class="fa fa-plus"></i> 添加角色 </button>
 				</div>
 			 </div>
            <table width="100%" class="table table-striped table-bordered table-hover" id="rolelist">
@@ -83,8 +83,8 @@
       
       <div class="row">
 	  <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-        <div class="panel flat radius-bordered">
-              <div class="panel-body p20">
+        <div class="panel flat radius-bordered no-margin-bottom">
+              <div class="panel-body">
                 <div id="scroll-menu">
                   <div id="menuTree" class="tree">
                     <div class="tree-folder" style="display: none;">
@@ -128,13 +128,13 @@
 <script id="useropera-hdbars" type="text/x-handlebars-template">
 {{#each elements}}
 <div class="checkbox opera-checkbox pull-left">
-  <label><input type="checkbox" class="colored-warning" menuId="{{this.menuId}}" value="{{this.id}}"><span class="text">{{this.name}}</span></label>
+  <label><input type="checkbox" class="colored-warning" menuId="{{this.menuId}}" value="{{this.id}}" checked="checked" disabled="disabled"><span class="text">{{this.name}}</span></label>
 </div>
 {{/each}}
 </script>
 <script id="usermenu-hdbars" type="text/x-handlebars-template">
 <div class="checkbox opera-checkbox pull-left">
-  <label><input type="checkbox" class="colored-warning" value="{{this.menuId}}"><span class="text">{{this.menuName}}</span></label>
+  <label><input type="checkbox" class="colored-warning" value="{{this.menuId}}" checked="checked" disabled="disabled"><span class="text">{{this.menuName}}</span></label>
 </div>
 </script>
 
@@ -143,57 +143,58 @@
 <#include "/inc/hdbars/option.vm">
 <#include "/inc/hdbars/avatar.vm">
 <#include "/inc/hdbars/status.vm">
-<script src="/assets/js/fuelux/treeview/treeview-custom.min.js"></script>
+<script src="${jsRoot}/assets/js/fuelux/treeview/treeview-custom.min.js"></script>
 <script type="text/javascript">
+var roleTable;
+var operaTable;
 $(document).ready(function () {
-	$("#scroll-menu").slimScroll({height: 427, alwaysVisible: true});
-	function showUsers(tenantId) {
-		$('#userlist').pagination({
-			info: true,
-			paginate: true,
-			url: '/v3/users/search',
-			columns: [
-			    { "data": "avatar", "sClass": "text-center" },
-			    { "data": "name" },
-			    { "data": "gender" },
-			    { "data": "phone" },
-			    { "data": "beginTime" },
-			    { "data": "endTime" },
-			    { "data": "channel" },
-			    { "data": null, "sClass": "text-center" },
-			    { "data": null, "sClass": "text-center" }
-			],
-			columnDefs: [
-			    {
-			    	width: 70,
-			    	targets: 0,
-			    	render: function (data, type, row, meta) {
-			    		return $.handlebars($('#avatar-hdbars'), {id: data.id, title: data.name, avatar: data.avatar});
-			    	}
-			    }
-			],
-			paremeters: { tenantId: tenantId },
-			status: true,
-			last: true
-		});
-	}
+	$("#scroll-menu").slimScroll({height: 436, alwaysVisible: true});
+	var userTable = $('#userlist').pagination({
+		info: true,
+		paginate: true,
+		url: '/v3/users/search',
+		columns: [
+		    { "data": "avatar", "sClass": "text-center" },
+		    { "data": "name" },
+		    { "data": "gender" },
+		    { "data": "phone" },
+		    { "data": "createdTime" },
+		    { "data": null, "sClass": "text-center" },
+		    { "data": null, "sClass": "text-center" }
+		],
+		columnDefs: [
+		    {
+		    	width: 70,
+		    	targets: 0,
+		    	render: function (data, type, row, meta) {
+		    		return $.handlebars($('#avatar-hdbars'), {id: data.id, title: data.name, avatar: data.avatar});
+		    	}
+		    },
+		    {
+		    	targets: 4,
+		    	render: function (data, type, row, meta) {
+		    		return $.mTime(data);
+		    	}
+		    }
+		],
+		paremeters: function() {
+			return { tenantId: $("#tenantId").val(), name: $("#name").val() };
+		},
+		status: true,
+		last: true
+	});
 	
-	//var userId = $('#userlist tbody tr:first').addClass('highlight').attr("id");
-	//showRoles(userId);
+	$.mAjax({url: '/v3/roles/tenant', param: { tenantId: 0 }}, function(json) {
+		$('#tenant-roles').html($.handlebars($('#tenrole-hdbars'), {elements: json.data}));
+	});
 	
-	function showTenantRoles(tenantId) {
-		$.mAjax({url: '/v3/roles/tenant', param: JSON.stringify({ tenantId: tenantId })}, function(json) {
-			$('#tenant-roles').html($.handlebars($('#tenrole-hdbars'), {elements: json.data}));
-		});
-	}
-	
-	var tenantId = 0;
-	showUsers(tenantId);
-	showTenantRoles(tenantId);
-	
-	function showRoles(userId) {
-		$('#rolelist').pagination({
-			url: '/v3/roles/tenant',
+	function showRoles() {
+		if (roleTable) {
+			roleTable.fnDraw();
+			return;
+		}
+		roleTable = $('#rolelist').pagination({
+			url: '/v3/roles/user',
 			scrollY: '415px',
 			columns: [
 			    { "data": "name" },
@@ -204,11 +205,13 @@ $(document).ready(function () {
 			    	width: 120,
 			    	targets: -1,
 			    	render: function (data, type, row, meta) {
-			    		return $.handlebars($('#button-hdbars'), {elements:[{id: data.id, type: "warning", icon: "remove", text:" 取消授权"}]});
+			    		return $.handlebars($('#button-hdbars'), {elements:[{id: data.id, type: "warning", icon: "remove", text:"取消授权", fn: "removeRole('"+data.dataId+"')"}]});
 			    	}
 			    }
 			],
-			paremeters: { userId: userId, tenantId: 0 },
+			paremeters: function() {
+				return { userId: $("#userId").val() };
+			},
 			destory: true
 		});
 	}
@@ -219,8 +222,12 @@ $(document).ready(function () {
 		});
 	}
 
-	function showOperations(userId) {
-		$('#operationlist').pagination({
+	function showOperations() {
+		if (operaTable) {
+			operaTable.fnDraw();
+			return;
+		}
+		operaTable = $('#operationlist').pagination({
 			url: '/v3/operations/user',
 			scrollY: '415px',
 			columns: [
@@ -241,7 +248,9 @@ $(document).ready(function () {
 			    	}
 			    }
 			],
-			paremeters: { userId: '34ce10bc982a11e69f5f0242ac110029' },
+			paremeters: function() {
+				return { userId: $("#userId").val() };
+			},
 			destory: true
 		});
 	}
@@ -254,10 +263,10 @@ $(document).ready(function () {
 			$(this).addClass('highlight');
 		}
 		
-		var userId = $(this).attr("id");
-		showRoles(userId);
-		showMenus(userId);
-		showOperations(userId);
+		$("#userId").val($(this).attr("id"));
+		showRoles();
+		showMenus();
+		showOperations();
 	});
 
 	$('#userlist tbody').on('click', '.btn-edit', function() {
@@ -280,34 +289,55 @@ $(document).ready(function () {
 	        });
 		});
 	});
-	$('#userlist tbody').on('click', '.btn-view', function() {
-		$.get("/v3/users/view", function(data){
-			bootbox.dialog({
-	            message: data,
-	            title: "用户资料",
-	            className: "modal-darkorange",
-	            buttons: {
-	                success: {
-	                    label: "关闭",
-	                    className: "btn-blue",
-	                    callback: function () { }
-	                },
-	                "修改": {
-	                    className: "btn-danger",
-	                    callback: function () { }
-	                }
-	            }
-	        });
-		});
-	});
+//	$('#userlist tbody').on('click', '.btn-view', function() {
+//		$.get("/v3/users/view", function(data){
+//			bootbox.dialog({
+//	            message: data,
+//	            title: "用户资料",
+//	            className: "modal-darkorange",
+//	            buttons: {
+//	                success: {
+//	                    label: "关闭",
+//	                    className: "btn-blue",
+//	                    callback: function () { }
+//	                },
+//	                "修改": {
+//	                    className: "btn-danger",
+//	                    callback: function () { }
+//	                }
+//	            }
+//	        });
+//		});
+//	});
 	$('#userlist tbody').on('click', '.btn-del', function() {
-		toastr.success('提交数据成功');
-		bootbox.confirm("您确定要删除这条记录?", function(result) {
-			console.log(result);
+		$.mSuccess('提交数据成功');
+	});
+	
+	$("#btn-search").click(function(){
+		userTable.fnDraw();
+	});
+	$("#btn-add-role").click(function(){
+		var userId = $.msNull($("#userId").val());
+		if ($.isEmpty(userId)) {
+			$.mWarning("请选择用户.");
+			return;
+		}
+		var roleId = $.msNull($("#tenantRole").attr("roleId"));
+		if ($.isEmpty(roleId)) {
+			$.mWarning("请选择角色.");
+			return;
+		}
+		
+		$.mAjax({
+			url: "/v3/users/role/add",
+			param: {roleId: roleId, userId: userId}
+		}, function(json) {
+            console.log(json);
+            roleTable.fnDraw();
+            $.mSuccess({message: '操作成功'});
 		});
 	});
 	$('#add-user').on('click', function() {
-		//$.mAjax({url: '/v3/users', param: JSON.stringify({ tenantId: tenantId })}, function(json) {});
 		$.get("/v3/users/new", function(data){
 			bootbox.dialog({
 	            message: data,
@@ -329,13 +359,18 @@ $(document).ready(function () {
 	        });
 		});
 	});
-	
- //npm install --save react react-dom redux react-redux react-router immutable redux-immutable redux-actions whatwg-fetch redux-thunk material-ui react-tap-event-plugin
- //npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es2015 babel-preset-react babel-preset-stage-1 eslint eslint-config-airbnb eslint-loader eslint-plugin-import@^1.16.0 eslint-plugin-jsx-a11y eslint-plugin-react html-webpack-plugin webpack webpack-dev-server redux-logger
 });
 
 function changeRole(obj, roleId) {
-	$('#tenantRole').attr("data", roleId).html($(obj).html());
+	$('#tenantRole').attr("roleId", roleId).html($(obj).html());
+}
+function removeRole(id) {
+	$.mConfirm("你确定要删除吗？", function() {
+		$.mAjax({method: 'DELETE', url: '/v3/users/role/remove/'+id}, function(json) {
+			roleTable.fnDraw();
+			$.mSuccess("操作成功");
+		});
+	});
 }
 </script>
 </@ui.js>

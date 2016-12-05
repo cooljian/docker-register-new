@@ -1,47 +1,114 @@
+<@ui.css>
+<link href="${jsRoot}/assets/css/pixel/pages.css" rel="stylesheet" />
+</@ui.css>
 <@ui.body>
-<div class="login-container animated fadeInDown">
-    <div class="loginbox bg-white">
-        <div class="loginbox-title">赛事管理系统</div>
-        <div class="form-group loginbox-textbox">
-        	<span class="input-icon">
-        		<input type="text" class="form-control input-login" placeholder="用户名" />
-        		<i class="fa fa-user palegreen"></i>
-        	</span>
-        </div>
-        <div class="form-group loginbox-textbox">
-        	<span class="input-icon">
-        		<input type="text" class="form-control input-login" placeholder="密码" />
-        		<i class="fa fa-lock palegreen"></i>
-        	</span>
-        </div>
-        <!-- <div class="loginbox-forgot">
-            <a class="forgot-password" href="default.htm">忘记密码?</a>
-        </div> -->
-        <div class="loginbox-submit mt10">
-            <input type="button" class="btn btn-success signin-btn" value="登 录">
-            <a class="forgot-password" href="/forgot">忘记密码?</a>
-        </div>
-        <!-- <div class="loginbox-signup">
-            <a href="register.html">注册</a>
-        </div> -->
-        <div class="loginbox-or">
-            <div class="or-line"></div>
-            <div class="or">使用其他方式登录</div>
-        </div>
-        <div class="loginbox-social">
-            <div class="social-buttons">
-                <a href="default.htm" class="button-facebook">
-                    <i class="social-icon fa fa-qq"></i>
-                </a>
-                <a href="default.htm" class="button-twitter">
-                    <i class="social-icon fa fa-wechat"></i>
-                </a>
-                <a href="default.htm" class="button-google">
-                    <i class="social-icon fa fa-weibo"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-    <!-- <div class="logobox"></div> -->
+<div class="page-signin">
+	<!-- Page background -->
+	<div id="page-signin-bg">
+		<!-- Replace this with your bg image -->
+		<img src="${jsRoot}/assets/img/swim/swim-bg-1.jpg" alt="" height="100%" width="100%">
+	</div>
+	<!-- / Page background -->
+
+	<!-- Container -->
+	<div class="signin-container">
+		<!-- Right side -->
+		<div class="signin-form">
+
+			<!-- Form -->
+			<form action="${authRoot}/v3/oauth/token" method="post" id="signin_form">
+				<div class="signin-text">
+					<span style="color: #70bafd;font-size:20px;"><b>上海市游泳管理平台</b></span>
+				</div> <!-- / .signin-text -->
+
+				<div class="form-group w-icon">
+					<input type="text" name="username" id="username_id" class="form-control input-lg" placeholder="用户名或手机号码">
+					<span class="fa fa-user signin-form-icon"></span>
+				</div> <!-- / Username -->
+
+				<div class="form-group w-icon">
+					<input type="password" name="password" id="password_id" class="form-control input-lg" placeholder="密码">
+					<span class="fa fa-lock signin-form-icon"></span>
+				</div> <!-- / Password -->
+				
+				<hr class="wide">
+
+				<div class="form-actions">
+					<input type="submit" value="登 录" class="signin-btn bg-info">
+					<a href="#" class="forgot-password" id="forgot-password-link">忘记密码?</a>
+				</div> <!-- / .form-actions -->
+			</form>
+			<form action="/v3/index" method="get" id="access_form">
+				<input type="hidden" name="t" id="access_token">
+			</form>
+			<!-- / Form -->
+
+			<!-- "Sign In with" block -->
+			<!-- <div class="signin-with">
+				Facebook
+				<a href="index.html" class="signin-with-btn" style="background:#4f6faa;background:rgba(79, 111, 170, .8);">新用户注册</a>
+			</div> -->
+			<!-- / "Sign In with" block -->
+
+		</div>
+		<!-- Right side -->
+	</div>
+	<!-- / Container -->
 </div>
+<@ui.js>
+<script src="${jsRoot}/assets/js/validation/bootstrap-validator.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $(window).on('resize', function () {
+	  $.mResize('.signin-form');
+  });
+  $.mResize('.signin-form');
+  $.clearStorage();
+  
+  $('#signin_form').bootstrapValidator({
+      fields: {
+    	  username: {
+              validators: {
+                  notEmpty: {
+                      message: '请填写用户名或手机号码'
+                  },
+                  stringLength: {
+                      min: 3,
+                      message: '用户名长度必须大于3位'
+                  }
+              }
+          },
+          password: {
+              validators: {
+                  notEmpty: {
+                      message: '请填写登录密码'
+                  },
+                  stringLength: {
+                      min: 6,
+                      message: '密码长度必须大于6位'
+                  },
+                  invalidPassword: {
+                      message: '错误的用户名密码'
+                  }
+              }
+          }
+      }
+  }).on('success.form.bv', function(e) {//点击提交之后
+      e.preventDefault();
+
+      var $form = $(e.target);
+      var bv = $form.data('bootstrapValidator');
+      if (bv.isValid()) {
+        $.mSignin($form.attr('action'), $form.serializeObject(), function(result) {
+      	  $.mSuccess("登录成功");
+      	  $("#access_token").val($.getToken());
+      	  access_form.submit();
+        }, function() {
+          bv.resetForm();
+        });
+      }
+  });
+});
+</script>
+</@ui.js>
 </@ui.body>

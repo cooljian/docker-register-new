@@ -9,7 +9,7 @@
 
 				<!-- Logo -->
 				<a href="/index" class="navbar-brand">
-					<div><img alt="Pixel Admin" src="/assets/img/logo-navbar.png"></div>我要运动
+					<div><img alt="Pixel Admin" src="${jsRoot}/assets/img/logo-navbar.png"></div>我要运动
 				</a>
 
 				<!-- Main navbar toggle -->
@@ -98,7 +98,7 @@
 									<div class="messages-list" id="main-navbar-messages">
 
 										<div class="message">
-											<img src="/assets/img/avatars/avatar.png" alt="" class="message-avatar">
+											<img src="${jsRoot}/assets/img/avatars/avatar.png" alt="" class="message-avatar">
 											<a href="#" class="message-subject">蚂蚁口碑开放平台-第1期种子开发者评估结果揭晓，请名单中的开发者尽快钉钉联系影珞。</a>
 											<div class="message-description">
 												来自 <a href="#">谭洁宁</a>
@@ -108,7 +108,7 @@
 										</div> <!-- / .message -->
 
 										<div class="message">
-											<img src="/assets/img/avatars/avatar.png" alt="" class="message-avatar">
+											<img src="${jsRoot}/assets/img/avatars/avatar.png" alt="" class="message-avatar">
 											<a href="#" class="message-subject">2016年11月07日UCloud北京区域电信移动线路扩容维护公告</a>
 											<div class="message-description">
 												来自 <a href="#">黄 倩</a>
@@ -130,7 +130,7 @@
 
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
-									<img src="/assets/img/avatars/avatar.png" alt="">
+									<img src="${jsRoot}/assets/img/avatars/avatar.png" alt="">
 									<span>天健管理员</span>
 								</a>
 								<ul class="dropdown-menu">
