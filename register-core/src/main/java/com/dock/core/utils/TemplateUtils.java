@@ -1,5 +1,6 @@
 package com.dock.core.utils;
 
+import com.google.common.collect.Maps;
 import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -15,6 +16,13 @@ public class TemplateUtils {
 
 	private static final String ATTRIBUTE_DATE = "date";
 	private static final String TEMPLATE_NAME = "my_template";
+
+	public static void main(String[] args) {
+		String template = "验证码${code}，您正在登录，若非本人操作，请勿泄露。";
+		Map<String, Object> data = Maps.newHashMap();
+		data.put("code", "111");
+		System.out.println(formatFreemarker(template, data));
+	}
 
 	public static String formatString(String template, Map<String, Object> data) {
 		logger.debug("###### template is :{}, with data :{}", template, data);
